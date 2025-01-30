@@ -19,11 +19,77 @@ model Post {
     @@index([name])
 }
 
-model User {
-    id              Int      @id @default(autoincrement())
-    username        String
-    name            String
-    avatar_url      String?
-    date_registered DateTime @default(now())
-    balance         Int
+model Users {
+    id               Int        @id @default(autoincrement())
+    username         String
+    name             String
+    avatar_url       String?
+    date_registered  DateTime   @default(now())
+    balance          Int
+    Items            Items?
+    ordersId         Int?
+    purchases        Orders[]   @relation("buyer")
+    sales            Orders[]   @relation("seller")
+    feedbackGiven    Feedback[] @relation("buyer")
+    feedbackReceived Feedback[] @relation("seller")
+}
+
+model Categories {
+    id            Int             @id @default(autoincrement())
+    category_name String
+    Subcategories Subcategories[]
+    Items         Items?
+}
+
+model Subcategories {
+    id               Int        @id @default(autoincrement())
+    category_id      Int
+    category         Categories @relation(fields: [category_id], references: [id])
+    subcategory_name String
+    Items            Items?
+}
+
+model Items {
+    id                Int           @id @default(autoincrement())
+    user_id           Int           @unique
+    user              Users         @relation(fields: [user_id], references: [id])
+    name              String
+    description       String
+    tag               String
+    category_id       Int           @unique
+    category          Categories    @relation(fields: [category_id], references: [id])
+    subcategory_id    Int           @unique
+    subcategory       Subcategories @relation(fields: [subcategory_id], references: [id])
+    price             Int
+    date_listed       DateTime      @default(now())
+    available_item    Boolean       @default(true)
+    photo_description String
+    photo_source      String[]
+    Orders            Orders?
+}
+
+model Orders {
+    id            Int       @id @default(autoincrement())
+    buyer_id      Int       @unique
+    seller_id     Int       @unique
+    buyer         Users     @relation("buyer", fields: [buyer_id], references: [id])
+    seller        Users     @relation("seller", fields: [seller_id], references: [id])
+    item_id       Int       @unique
+    item          Items     @relation(fields: [item_id], references: [id])
+    pending_order Boolean   @default(true)
+    date_ordered  DateTime  @default(now())
+    Feedback      Feedback?
+}
+
+model Feedback {
+    id        Int      @id @default(autoincrement())
+    order_id  Int      @unique
+    order     Orders   @relation(fields: [order_id], references: [id])
+    buyer_id  Int      @unique
+    seller_id Int      @unique
+    buyer     Users    @relation("buyer", fields: [buyer_id], references: [id])
+    seller    Users    @relation("seller", fields: [seller_id], references: [id])
+    rating    Int
+    comment   String
+    date_left DateTime @default(now())
 }

@@ -1,13 +1,58 @@
 import { PrismaClient } from "@prisma/client";
-import { users } from "data";
+import { categories, users } from "data";
 
 const prisma = new PrismaClient();
 
 async function main() {
-  await prisma.user.deleteMany()
-  await prisma.user.createMany({
+  await prisma.feedback.deleteMany();
+  await prisma.orders.deleteMany();
+  await prisma.items.deleteMany();
+  await prisma.subcategories.deleteMany();
+  await prisma.categories.deleteMany();
+  await prisma.users.deleteMany();
+
+  await prisma.users.createMany({
     data: users,
   });
+
+  const createRef = <T, K extends keyof T, V extends keyof T>(
+    array: Array<T>,
+    key: K,
+    value: V
+  ): Record<string | number | symbol, T[V]> => {
+    return array.reduce((ref, element) => {
+      ref[element[key] as string | number | symbol] = element[value];
+      return ref;
+    }, {} as Record<string | number | symbol, T[V]>);
+  };
+
+  const categoryRecords = await (async () => {
+    return await prisma.$transaction(
+      categories.map((category) =>
+        prisma.categories.create({ data: { category_name: category.name } }),
+      ),
+    );
+  })();
+
+  const categoryRef = createRef(categoryRecords, "category_name", "id");
+
+  const subcategoryRecords = await (async () => {
+    const data = categories
+      .map(({ name, subcategories }) => {
+        const category_id = categoryRef[name] || 0;
+        return subcategories.map((subcategory_name) => {
+          return {category_id, subcategory_name};
+        });
+      })
+      .flat();
+    return await prisma.$transaction(
+      data.map(({category_id, subcategory_name}) =>
+        prisma.subcategories.create({
+          data: { category_id, subcategory_name },
+        }),
+      ),
+    );
+  })();
 }
 
 main()
