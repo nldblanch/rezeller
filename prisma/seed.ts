@@ -1,19 +1,33 @@
 import { PrismaClient } from "@prisma/client";
-import { categories, users } from "data";
-import { createRef } from "./utils";
+import { categories, items, users } from "data";
+import { convertDateToTimestamp, createLookup } from "./utils";
 
 const prisma = new PrismaClient();
 
 async function main() {
   await dropRecords();
 
-  await createUsers();
+  const usersRecords = await createUsers();
+
+  const userLookup = createLookup(usersRecords, "username", "id");
 
   const categoryRecords = await createCategories();
 
-  const categoryRef = createRef(categoryRecords, "category_name", "id");
+  const categoryLookup = createLookup(categoryRecords, "category_name", "id");
 
-  const subcategoryRecords = await createSubcategories(categoryRef);
+  const subcategoryRecords = await createSubcategories(categoryLookup);
+
+  const subcategoryLookup = createLookup(
+    subcategoryRecords,
+    "subcategory_name",
+    "id",
+  );
+
+  const itemRecords = await createItems(
+    userLookup,
+    categoryLookup,
+    subcategoryLookup,
+  );
 }
 
 async function dropRecords() {
@@ -26,9 +40,9 @@ async function dropRecords() {
 }
 
 async function createUsers() {
-  await prisma.users.createMany({
-    data: users,
-  });
+  return await prisma.$transaction(
+    users.map((user) => prisma.users.create({ data: user })),
+  );
 }
 
 async function createCategories() {
@@ -40,11 +54,11 @@ async function createCategories() {
 }
 
 async function createSubcategories(
-  categoryRef: Record<string | number | symbol, number>,
+  categoryLookup: Record<string | number | symbol, number>,
 ) {
   const data = categories
     .map(({ name, subcategories }) => {
-      const category_id = categoryRef[name] || 0;
+      const category_id = categoryLookup[name] || 0;
       return subcategories.map((subcategory_name) => {
         return { category_id, subcategory_name };
       });
@@ -58,6 +72,50 @@ async function createSubcategories(
     ),
   );
 }
+
+async function createItems(
+  userLookup: Record<string, number>,
+  categoryLookup: Record<string, number>,
+  subcategoryLookup: Record<string, number>,
+) {
+  const data = items.map(
+    ({
+      username,
+      name,
+      description,
+      category,
+      subcategory,
+      tag,
+      price,
+      date_listed,
+      photo_description,
+      photo_source,
+      available_item,
+    }) => {
+      const user_id = userLookup[username] || 0;
+      const category_id = categoryLookup[category] || 0;
+      const subcategory_id = subcategoryLookup[subcategory] || 0;
+      return {
+        user_id,
+        name,
+        description,
+        tag,
+        category_id,
+        subcategory_id,
+        price,
+        date_listed: convertDateToTimestamp(date_listed),
+        photo_description,
+        photo_source,
+        available_item,
+      };
+    },
+  );
+
+  return await prisma.$transaction(
+    data.map((item) => prisma.items.create({ data: item })),
+  );
+}
+
 main()
   .then(async () => {
     await prisma.$disconnect();

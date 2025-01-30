@@ -26,7 +26,7 @@ model Users {
     avatar_url       String?
     date_registered  DateTime   @default(now())
     balance          Int
-    Items            Items?
+    Items            Items[]
     ordersId         Int?
     purchases        Orders[]   @relation("buyer")
     sales            Orders[]   @relation("seller")
@@ -38,7 +38,7 @@ model Categories {
     id            Int             @id @default(autoincrement())
     category_name String
     Subcategories Subcategories[]
-    Items         Items?
+    Items         Items[]
 }
 
 model Subcategories {
@@ -46,19 +46,19 @@ model Subcategories {
     category_id      Int
     category         Categories @relation(fields: [category_id], references: [id])
     subcategory_name String
-    Items            Items?
+    Items            Items[]
 }
 
 model Items {
     id                Int           @id @default(autoincrement())
-    user_id           Int           @unique
+    user_id           Int
     user              Users         @relation(fields: [user_id], references: [id])
     name              String
     description       String
     tag               String
-    category_id       Int           @unique
+    category_id       Int
     category          Categories    @relation(fields: [category_id], references: [id])
-    subcategory_id    Int           @unique
+    subcategory_id    Int
     subcategory       Subcategories @relation(fields: [subcategory_id], references: [id])
     price             Int
     date_listed       DateTime      @default(now())
@@ -70,8 +70,8 @@ model Items {
 
 model Orders {
     id            Int       @id @default(autoincrement())
-    buyer_id      Int       @unique
-    seller_id     Int       @unique
+    buyer_id      Int
+    seller_id     Int
     buyer         Users     @relation("buyer", fields: [buyer_id], references: [id])
     seller        Users     @relation("seller", fields: [seller_id], references: [id])
     item_id       Int       @unique
@@ -85,8 +85,8 @@ model Feedback {
     id        Int      @id @default(autoincrement())
     order_id  Int      @unique
     order     Orders   @relation(fields: [order_id], references: [id])
-    buyer_id  Int      @unique
-    seller_id Int      @unique
+    buyer_id  Int
+    seller_id Int
     buyer     Users    @relation("buyer", fields: [buyer_id], references: [id])
     seller    Users    @relation("seller", fields: [seller_id], references: [id])
     rating    Int
