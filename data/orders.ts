@@ -1,10 +1,26 @@
 export default [
-  { buyer_id: 1, seller_id: 2, item_id: 1 },
-  { buyer_id: 2, seller_id: 3, item_id: 2 },
-  { buyer_id: 4, seller_id: 2, item_id: 3 },
-  { buyer_id: 5, seller_id: 2, item_id: 4 },
-  { buyer_id: 1, seller_id: 1, item_id: 5 },
-  { buyer_id: 1, seller_id: 5, item_id: 6 },
-  { buyer_id: 2, seller_id: 1, item_id: 7 },
-  { buyer_id: 2, seller_id: 1, item_id: 8 },
+  { buyer: "darthblanch", seller: "LukeHarriSell", item_name: "Chime at set" },
+  {
+    buyer: "nickblanch360",
+    seller: "excitednachos",
+    item_name: "Ninja Airfryer",
+  },
+  { buyer: "jetandmax53", seller: "DanMurphy", item_name: "Yeezy 350 Boots" },
+  {
+    buyer: "LukeHarriSell",
+    seller: "darthblanch",
+    item_name: "flash DC chewing gum tin",
+  },
+  { buyer: "darthblanch", seller: "jetandmax53", item_name: "old TV" },
+  { buyer: "darthblanch", seller: "LukeHarriSell", item_name: "Marvel Jigsaw" },
+  {
+    buyer: "nickblanch360",
+    seller: "darthblanch",
+    item_name: "Oladance Wearable Stereo over ear headphones",
+  },
+  {
+    buyer: "nickblanch360",
+    seller: "darthblanch",
+    item_name: "PS4 Controller black with stick drift - used, for parts",
+  },
 ];

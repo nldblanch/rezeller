@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import { categories, items, users } from "data";
+import { categories, feedback, items, orders, users } from "data";
 import { convertDateToTimestamp, createLookup } from "./utils";
 
 const prisma = new PrismaClient();
@@ -28,6 +28,14 @@ async function main() {
     categoryLookup,
     subcategoryLookup,
   );
+
+  const itemLookup = createLookup(itemRecords, "name", "id");
+
+  const orderRecords = await createOrders(itemLookup, userLookup);
+
+  const orderLookup = createLookup(orderRecords, "item_id", "id");
+
+  await createFeedback(itemLookup, orderLookup, userLookup);
 }
 
 async function dropRecords() {
@@ -53,9 +61,7 @@ async function createCategories() {
   );
 }
 
-async function createSubcategories(
-  categoryLookup: Record<string | number | symbol, number>,
-) {
+async function createSubcategories(categoryLookup: Record<string, number>) {
   const data = categories
     .map(({ name, subcategories }) => {
       const category_id = categoryLookup[name] || 0;
@@ -113,6 +119,44 @@ async function createItems(
 
   return await prisma.$transaction(
     data.map((item) => prisma.items.create({ data: item })),
+  );
+}
+
+async function createOrders(
+  itemLookup: Record<string, number>,
+  userLookup: Record<string, number>,
+) {
+  const data = orders.map((order) => {
+    return {
+      buyer_id: userLookup[order.buyer] || 0,
+      seller_id: userLookup[order.seller] || 0,
+      item_id: itemLookup[order.item_name] || 0,
+    };
+  });
+  return await prisma.$transaction(
+    data.map((order) => prisma.orders.create({ data: order })),
+  );
+}
+
+async function createFeedback(
+  itemLookup: Record<string, number>,
+  orderLookup: Record<string, number>,
+  userLookup: Record<string, number>,
+) {
+  const data = feedback.map((comment) => {
+    const item_id = itemLookup[comment.item_name] || 0;
+
+    return {
+      buyer_id: userLookup[comment.buyer] || 0,
+      seller_id: userLookup[comment.seller] || 0,
+      order_id: orderLookup[item_id] || 0,
+      rating: comment.rating,
+      comment: comment.comment,
+      date_left: convertDateToTimestamp(comment.date_left),
+    };
+  });
+  return await prisma.$transaction(
+    data.map((feedback) => prisma.feedback.create({ data: feedback })),
   );
 }
 
