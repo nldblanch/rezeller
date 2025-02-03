@@ -15,7 +15,11 @@ export default function Login() {
                   name="login"
                   value={value}
                   onClick={async () => {
-                    await loginUser(value);
+                    try {
+                      await loginUser(value);
+                    } catch (err) {
+                      console.log(err);
+                    }
                   }}
                 >
                   Login as user {value}
