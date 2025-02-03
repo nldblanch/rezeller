@@ -1,7 +1,7 @@
 "use client";
 import { loginUser } from "../actions";
 
-export default async function Login() {
+export default function Login() {
   return (
     <main>
       <form className="flex flex-col items-center justify-center">

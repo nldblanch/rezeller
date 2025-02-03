@@ -3,13 +3,11 @@ import { Settings } from "~/app/_components/settings";
 import ItemListServer from "~/app/_components/item-list-server";
 
 export default async function Items({
-  searchParams:search,
+  searchParams: search,
 }: {
-  searchParams: Promise<{search: string}>;
+  searchParams: Promise<{ search: string }>;
 }) {
-  // 
-  const searchParams = (await search)
-  console.log(searchParams, "here")
+  const searchParams = await search;
   return (
     <HydrateClient>
       <main className="rid grid-cols-12 tablet:mx-2 tablet:px-2">

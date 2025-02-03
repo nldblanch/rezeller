@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { Categories } from "~/app/_components/categories";
 
 import { api, HydrateClient } from "~/trpc/server";
@@ -14,7 +13,6 @@ export default async function Item({
 }) {
   const id = (await params).id;
   const item = await api.items.fetchItem({ id: String(id) });
-  console.log(item)
   const user = await api.user.getUserById({ id: String(item.user_id) });
   if (!user) return notFound();
   return (

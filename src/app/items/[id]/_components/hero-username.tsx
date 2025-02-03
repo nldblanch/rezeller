@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { User } from "~/app/types/item";
+import type { User } from "~/app/types/item";
 
 export default function HeroUsername({ user }: { user: User }) {
   return (

@@ -6,7 +6,7 @@ import { cookies } from "next/headers";
 import { notFound } from "next/navigation";
 
 export default async function Profile() {
-  const user_id = (await cookies()).get("user_id")?.value || "";
+  const user_id = (await cookies()).get("user_id")?.value ?? "";
 
   if (!user_id) {
     console.error("❌ No user ID found in cookies");

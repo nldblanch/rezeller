@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function Loading() {
   const styles = {
     square_image_skeleton:
@@ -8,11 +10,13 @@ export default function Loading() {
     small_text_skeleton: "h-2 bg-zinc-500 animate-pulse",
   };
   return (
-    <ul className="tablet:col-span-6 tablet:col-start-4 col-span-full grid grid-cols-12 gap-4">
+    <ul className="col-span-full grid grid-cols-12 gap-4 tablet:col-span-6 tablet:col-start-4">
       <li className="col-span-full">
-        <section className="desktop:grid-rows-1 grid w-full grid-cols-12 grid-rows-6">
-          <img
-            className={`desktop:col-span-3 col-span-5 row-span-full ${styles.square_image_skeleton} h-full w-full`}
+        <section className="grid w-full grid-cols-12 grid-rows-6 desktop:grid-rows-1">
+          <Image
+            src=""
+            alt="loading"
+            className={`col-span-5 row-span-full desktop:col-span-3 ${styles.square_image_skeleton} h-full w-full`}
           />
 
           <h3
@@ -22,9 +26,11 @@ export default function Loading() {
         </section>
       </li>
       <li className="col-span-full">
-        <section className="desktop:grid-rows-1 grid w-full grid-cols-12 grid-rows-6">
-          <img
-            className={`desktop:col-span-3 col-span-5 row-span-full ${styles.square_image_skeleton} h-full w-full`}
+        <section className="grid w-full grid-cols-12 grid-rows-6 desktop:grid-rows-1">
+          <Image
+            src=""
+            alt="loading"
+            className={`col-span-5 row-span-full desktop:col-span-3 ${styles.square_image_skeleton} h-full w-full`}
           />
 
           <h3
@@ -34,9 +40,11 @@ export default function Loading() {
         </section>
       </li>
       <li className="col-span-full">
-        <section className="desktop:grid-rows-1 grid w-full grid-cols-12 grid-rows-6">
-          <img
-            className={`desktop:col-span-3 col-span-5 row-span-full ${styles.square_image_skeleton} h-full w-full`}
+        <section className="grid w-full grid-cols-12 grid-rows-6 desktop:grid-rows-1">
+          <Image
+            src=""
+            className={`col-span-5 row-span-full desktop:col-span-3 ${styles.square_image_skeleton} h-full w-full`}
+            alt="loading"
           />
 
           <h3

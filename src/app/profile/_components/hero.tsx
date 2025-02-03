@@ -1,32 +1,26 @@
+import Image from "next/image";
 import { convertDateToHuman, convertPennyToPounds } from "~/app/scripts";
-import { User } from "~/app/types/item";
+import type { User } from "~/app/types/item";
 
 export const Hero = ({ user }: { user: User }) => {
-  let {
-    username,
-    avatar_url,
-    name,
-    balance = 0,
-    date_registered,
-  } = user;
-  if (!avatar_url) avatar_url = ""
+  const { username, avatar_url, name, balance = 0, date_registered } = user;
   return (
-    <section className="mobile-landscape:px-0 mobile-landscape:mx-0 grid grid-cols-12 gap-1">
+    <section className="grid grid-cols-12 gap-1 mobile-landscape:mx-0 mobile-landscape:px-0">
       <p className="col-span-full col-start-2">Hi {username}!</p>
-      <div className="mobile-landscape:col-span-6 mobile-landscape:col-start-1 tablet-landscape:col-span-3 col-span-full row-span-12 flex justify-center">
-        <img
+      <div className="col-span-full row-span-12 flex justify-center mobile-landscape:col-span-6 mobile-landscape:col-start-1 tablet-landscape:col-span-3">
+        <Image
           className="aspect-square h-full w-full"
-          src={avatar_url}
+          src={avatar_url ?? ""}
           alt="users avatar"
         />
       </div>
-      <h2 className="mobile-landscape:col-start-8 mobile-landscape:text-xl tablet-landscape:col-start-5 tablet-landscape:col-span-4 col-span-5 col-start-2 text-sm">
+      <h2 className="col-span-5 col-start-2 text-sm mobile-landscape:col-start-8 mobile-landscape:text-xl tablet-landscape:col-span-4 tablet-landscape:col-start-5">
         {name}
       </h2>
-      <p className="mobile-landscape:col-start-8 mobile-landscape:text-xl tablet-landscape:col-start-9 tablet-landscape:col-span-4 col-span-5 col-start-8 w-full text-sm">
+      <p className="col-span-5 col-start-8 w-full text-sm mobile-landscape:col-start-8 mobile-landscape:text-xl tablet-landscape:col-span-4 tablet-landscape:col-start-9">
         Balance: {convertPennyToPounds(balance)}
       </p>
-      <p className="mobile-landscape:col-start-8 tablet-landscape:col-start-5 tablet-landscape:text-[12px] col-span-full col-start-2 text-[8px]">
+      <p className="col-span-full col-start-2 text-[8px] mobile-landscape:col-start-8 tablet-landscape:col-start-5 tablet-landscape:text-[12px]">
         Member since {convertDateToHuman(String(date_registered))}
       </p>
     </section>

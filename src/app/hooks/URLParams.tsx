@@ -9,19 +9,22 @@ interface Params {
 }
 export const useURLParams = () => {
   const searchParams = useSearchParams();
-  const searchTerm = searchParams.get("search") || "";
-  const category = searchParams.get("category") || "";
-  const subcategory = searchParams.get("subcategory") || "";
-  const min_price = searchParams.get("min_price") || "";
-  const max_price = searchParams.get("max_price") || "";
+  const searchTerm = searchParams.get("search") ?? "";
+  const category = searchParams.get("category") ?? "";
+  const subcategory = searchParams.get("subcategory") ?? "";
+  const min_price = searchParams.get("min_price") ?? "";
+  const max_price = searchParams.get("max_price") ?? "";
 
   const createURLParamString = (params: Params) => {
     let queryStr = "";
     Object.entries(params).forEach(([key, value]: string[], i) => {
       if (key === "searchTerm") key = "search";
       if (value) {
-
-        i === 0 ? (queryStr += `${key}=${value}`) : queryStr += `&${key}=${value}`;
+        if (i === 0) {
+          queryStr += `${key}=${value}`;
+        } else {
+          queryStr += `&${key}=${value}`;
+        }
       }
     });
     console.log(queryStr);

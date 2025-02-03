@@ -8,7 +8,9 @@ interface UserContextType {
 }
 
 // Create context without an initial value (undefined by default)
-export const UserContext = createContext<UserContextType | undefined>(undefined);
+export const UserContext = createContext<UserContextType | undefined>(
+  undefined,
+);
 
 // Custom hook to use the UserContext
 export const useUser = () => {

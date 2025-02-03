@@ -1,13 +1,13 @@
-import { Prisma } from "@prisma/client";
+import type { Prisma } from "@prisma/client";
 
-export type User = Prisma.UsersGetPayload<{}>;
+export type User = Prisma.UsersGetPayload<undefined>;
 
-export type Item = Prisma.ItemsGetPayload<{}>;
+export type Item = Prisma.ItemsGetPayload<undefined>;
 
-export type Category = Prisma.CategoriesGetPayload<{}>;
+export type Category = Prisma.CategoriesGetPayload<undefined>;
 
-export type Subcategory = Prisma.SubcategoriesGetPayload<{}>;
+export type Subcategory = Prisma.SubcategoriesGetPayload<undefined>;
 
-export type Order = Prisma.OrdersGetPayload<{}>;
+export type Order = Prisma.OrdersGetPayload<undefined>;
 
-export type Feedback = Prisma.FeedbackGetPayload<{}>;
+export type Feedback = Prisma.FeedbackGetPayload<undefined>;

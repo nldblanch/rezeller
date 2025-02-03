@@ -8,7 +8,7 @@ export default async function User({
 }: {
   params: Promise<{ id: string }>;
 }) {
-  const user_id = Number((await params).id)
+  const user_id = Number((await params).id);
   if (isNaN(user_id)) return <p>Invalid user ID</p>;
 
   const user = await api.user.getUserById({ id: String(user_id) });

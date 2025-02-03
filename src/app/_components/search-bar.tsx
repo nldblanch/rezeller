@@ -8,7 +8,7 @@ import Image from "next/image";
 export default function SearchBar() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const initialSearchValue = searchParams.get("search") || "";
+  const initialSearchValue = searchParams.get("search") ?? "";
   const [searchValue, setSearchValue] = useState(initialSearchValue);
 
   useEffect(() => {
@@ -16,11 +16,14 @@ export default function SearchBar() {
   }, [initialSearchValue]);
 
   return (
-    <section className="mobile-landscape:col-span-6 mobile-landscape:col-start-4 col-span-full w-full">
+    <section className="col-span-full w-full mobile-landscape:col-span-6 mobile-landscape:col-start-4">
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          const { value } = e.currentTarget.search;
+          const form = e.currentTarget as HTMLFormElement;
+          const input = form.elements.namedItem("search") as HTMLInputElement;
+          const value = input?.value.trim();
+
           if (value) {
             router.push(`/items?search=${value}`);
           } else {

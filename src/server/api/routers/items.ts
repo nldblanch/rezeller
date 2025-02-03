@@ -44,7 +44,7 @@ export const itemsRouter = createTRPCRouter({
       });
 
       if (!items.length) {
-        return Promise.reject({ code: 404, message: "no items found" });
+        return Promise.reject(new Error("No items found"));
       }
 
       return items;

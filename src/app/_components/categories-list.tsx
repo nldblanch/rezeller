@@ -1,6 +1,5 @@
-"use client"
+"use client";
 import Link from "next/link";
-
 
 import { categories } from "../constants/categories";
 import { useSearchParams } from "next/navigation";
@@ -8,8 +7,8 @@ import { convertCategory } from "../scripts";
 
 export const CategoriesList = () => {
   const searchParams = useSearchParams();
-  const activeCategory = searchParams.get("category") || "";
-  const activeSubcategory = searchParams.get("subcategory") || "";
+  const activeCategory = searchParams.get("category") ?? "";
+  const activeSubcategory = searchParams.get("subcategory") ?? "";
   return (
     <ul>
       {categories.map((category) => {

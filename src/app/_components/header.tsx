@@ -9,16 +9,16 @@ export default async function Header({ searchbar }: { searchbar: boolean }) {
   return (
     <header className="">
       <nav className="grid grid-cols-12 gap-2 p-2">
-        <div className="mobile-landscape:col-span-3 col-span-6">
+        <div className="col-span-6 mobile-landscape:col-span-3">
           <Link href="/">REZELLER</Link>
         </div>
-        <div className="mobile-landscape:block mobile-landscape:col-span-6 mobile-landscape:col-start-4 hidden">
+        <div className="hidden mobile-landscape:col-span-6 mobile-landscape:col-start-4 mobile-landscape:block">
           {searchbar && <SearchBar />}
         </div>
-        <ul className="mobile-landscape:col-span-3 mobile-landscape:col-start-10 col-span-6 flex justify-end gap-4">
+        <ul className="col-span-6 flex justify-end gap-4 mobile-landscape:col-span-3 mobile-landscape:col-start-10">
           <HeaderLinks user_id={user_id} />
         </ul>
-        <div className="mobile-landscape:hidden col-span-full">
+        <div className="col-span-full mobile-landscape:hidden">
           {searchbar && <SearchBar />}
         </div>
       </nav>

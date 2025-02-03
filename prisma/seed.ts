@@ -64,7 +64,7 @@ async function createCategories() {
 async function createSubcategories(categoryLookup: Record<string, number>) {
   const data = categories
     .map(({ name, subcategories }) => {
-      const category_id = categoryLookup[name] || 0;
+      const category_id = categoryLookup[name] ?? 0;
       return subcategories.map((subcategory_name) => {
         return { category_id, subcategory_name };
       });
@@ -98,9 +98,9 @@ async function createItems(
       photo_source,
       available_item,
     }) => {
-      const user_id = userLookup[username] || 0;
-      const category_id = categoryLookup[category] || 0;
-      const subcategory_id = subcategoryLookup[subcategory] || 0;
+      const user_id = userLookup[username] ?? 0;
+      const category_id = categoryLookup[category] ?? 0;
+      const subcategory_id = subcategoryLookup[subcategory] ?? 0;
       return {
         user_id,
         name,
@@ -128,9 +128,9 @@ async function createOrders(
 ) {
   const data = orders.map((order) => {
     return {
-      buyer_id: userLookup[order.buyer] || 0,
-      seller_id: userLookup[order.seller] || 0,
-      item_id: itemLookup[order.item_name] || 0,
+      buyer_id: userLookup[order.buyer] ?? 0,
+      seller_id: userLookup[order.seller] ?? 0,
+      item_id: itemLookup[order.item_name] ?? 0,
     };
   });
   return await prisma.$transaction(
@@ -144,12 +144,12 @@ async function createFeedback(
   userLookup: Record<string, number>,
 ) {
   const data = feedback.map((comment) => {
-    const item_id = itemLookup[comment.item_name] || 0;
+    const item_id = itemLookup[comment.item_name] ?? 0;
 
     return {
-      buyer_id: userLookup[comment.buyer] || 0,
-      seller_id: userLookup[comment.seller] || 0,
-      order_id: orderLookup[item_id] || 0,
+      buyer_id: userLookup[comment.buyer] ?? 0,
+      seller_id: userLookup[comment.seller] ?? 0,
+      order_id: orderLookup[item_id] ?? 0,
       rating: comment.rating,
       comment: comment.comment,
       date_left: convertDateToTimestamp(comment.date_left),

@@ -2,7 +2,8 @@ export default [
   {
     username: "excitednachos",
     name: "Ninja Airfryer",
-    description: "Only been used a few times. Selling due to being too big for the kitchen.",
+    description:
+      "Only been used a few times. Selling due to being too big for the kitchen.",
     category: "home_and_living",
     subcategory: "kitchenware",
     tag: "airfryer",
@@ -10,7 +11,9 @@ export default [
     date_listed: "2023-07-29",
     available_item: false,
     photo_description: "ninja airfryer",
-    photo_source: ["https://i.ibb.co/31zdHyV/Whats-App-Image-2024-12-22-at-14-39-27.jpg"],
+    photo_source: [
+      "https://i.ibb.co/31zdHyV/Whats-App-Image-2024-12-22-at-14-39-27.jpg",
+    ],
   },
   {
     username: "jetandmax53",
@@ -32,7 +35,8 @@ export default [
   {
     username: "LukeHarriSell",
     name: "Custom cat bowl",
-    description: "For when your cat is just too fussy to eat out of a normal bowl",
+    description:
+      "For when your cat is just too fussy to eat out of a normal bowl",
     category: "home_and_living",
     subcategory: "kitchenware",
     tag: "bowl",
@@ -40,7 +44,9 @@ export default [
     date_listed: "2023-12-21",
     available_item: true,
     photo_description: "cat bowl",
-    photo_source: ["https://i.ibb.co/W5cx6bn/Whats-App-Image-2024-12-22-at-22-48-13-1.jpg"],
+    photo_source: [
+      "https://i.ibb.co/W5cx6bn/Whats-App-Image-2024-12-22-at-22-48-13-1.jpg",
+    ],
   },
   {
     username: "LukeHarriSell",
@@ -53,7 +59,9 @@ export default [
     date_listed: "2018-01-27",
     available_item: true,
     photo_description: "coding book",
-    photo_source: ["https://i.ibb.co/56yCPr6/Whats-App-Image-2024-12-22-at-22-48-13.jpg"],
+    photo_source: [
+      "https://i.ibb.co/56yCPr6/Whats-App-Image-2024-12-22-at-22-48-13.jpg",
+    ],
   },
   {
     username: "LukeHarriSell",
@@ -66,7 +74,9 @@ export default [
     date_listed: "2024-09-11",
     available_item: false,
     photo_description: "marvel puzzle",
-    photo_source: ["https://i.ibb.co/28J52HR/Whats-App-Image-2024-12-22-at-22-48-12-1.jpg"],
+    photo_source: [
+      "https://i.ibb.co/28J52HR/Whats-App-Image-2024-12-22-at-22-48-12-1.jpg",
+    ],
   },
   {
     username: "LukeHarriSell",
@@ -79,7 +89,9 @@ export default [
     date_listed: "2023-06-06",
     available_item: true,
     photo_description: "wall clock",
-    photo_source: ["https://i.ibb.co/HG0473p/Whats-App-Image-2024-12-22-at-22-48-12.jpg"],
+    photo_source: [
+      "https://i.ibb.co/HG0473p/Whats-App-Image-2024-12-22-at-22-48-12.jpg",
+    ],
   },
   {
     username: "LukeHarriSell",
@@ -92,7 +104,9 @@ export default [
     date_listed: "2022-04-18",
     available_item: false,
     photo_description: "chime set",
-    photo_source: ["https://i.ibb.co/X2fv9yh/Whats-App-Image-2024-12-22-at-22-48-11.jpg"],
+    photo_source: [
+      "https://i.ibb.co/X2fv9yh/Whats-App-Image-2024-12-22-at-22-48-11.jpg",
+    ],
   },
   {
     username: "darthblanch",
@@ -202,7 +216,9 @@ export default [
     date_listed: "2024-03-24",
     available_item: true,
     photo_description: "handpainted mug",
-    photo_source: ["https://i.ibb.co/LYfX2gf/Whats-App-Image-2025-01-07-at-11-03-04.jpg"],
+    photo_source: [
+      "https://i.ibb.co/LYfX2gf/Whats-App-Image-2025-01-07-at-11-03-04.jpg",
+    ],
   },
   {
     username: "DanMurphy",

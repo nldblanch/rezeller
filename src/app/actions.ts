@@ -1,6 +1,6 @@
 "use server";
 
-import { RequestCookie } from "next/dist/compiled/@edge-runtime/cookies";
+import type { RequestCookie } from "next/dist/compiled/@edge-runtime/cookies";
 import { cookies } from "next/headers";
 import { notFound, redirect } from "next/navigation";
 

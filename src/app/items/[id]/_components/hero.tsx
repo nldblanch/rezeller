@@ -2,26 +2,21 @@
 import { useState } from "react";
 
 import HeroUsername from "./hero-username";
-import { Item, User } from "~/app/types/item";
+import type { Item, User } from "~/app/types/item";
 import { capitaliseFirstLetters, convertPennyToPounds } from "~/app/scripts";
+import Image from "next/image";
 
 export default function Hero({ item, user }: { item: Item; user: User }) {
-  const {
-    name = "",
-    photo_source = [],
-    photo_description,
-    user_id = 0,
-    price = 0,
-  } = item;
+  const { name = "", photo_source = [], photo_description, price = 0 } = item;
   const [mainPhoto, setMainPhoto] = useState(photo_source[0]);
   return (
     <section className="grid grid-cols-12">
-      <img
-        className="mobile-landscape:col-span-6 col-span-12 col-start-1 aspect-square w-full object-cover"
-        src={mainPhoto}
+      <Image
+        className="col-span-12 col-start-1 aspect-square w-full object-cover mobile-landscape:col-span-6"
+        src={mainPhoto ?? ""}
         alt={photo_description}
       />
-      <div className="mobile-landscape:col-span-6 col-span-12 p-4">
+      <div className="col-span-12 p-4 mobile-landscape:col-span-6">
         <h2 className="text-2xl">{capitaliseFirstLetters(name)}</h2>
         <div className="my-2 border-t" />
         <HeroUsername user={user} />
@@ -40,8 +35,9 @@ export default function Hero({ item, user }: { item: Item; user: User }) {
                     })
                   }
                 >
-                  <img
+                  <Image
                     src={photo}
+                    alt="hero shot"
                     className="col-span-1 h-full w-full rounded-lg object-cover"
                   />
                 </button>

@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 export default async function ItemListServer({
   searchParams,
 }: {
-  searchParams: { [key: string]: string | string[] | undefined };
+  searchParams: Record<string, string | string[] | undefined>;
 }) {
   const searchTerm = searchParams.search?.toString();
   const category_id = searchParams.category?.toString();
@@ -18,7 +18,7 @@ export default async function ItemListServer({
     | "date_listed"
     | undefined;
   const order = searchParams.order as "asc" | "desc" | undefined;
-  const p = Number(searchParams.p?.toString()) || 1;
+  const p = Number(searchParams.p?.toString()) ?? 1;
   try {
     const items = await api.items.fetchAllItems({
       category_id,
