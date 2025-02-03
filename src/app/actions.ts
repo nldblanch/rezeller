@@ -9,7 +9,10 @@ export async function loginUser(index: string) {
   const user_id = users[Number(index) - 1]?.id ?? 0;
   let redirectPath = "";
   try {
-    (await cookies()).set("user_id", String(user_id), { httpOnly: true });
+    (await cookies()).set("user_id", String(user_id), {
+      httpOnly: true,
+      expires: new Date(Date.now() + 24 * 60 * 60 * 1000),
+    });
     redirectPath = "/profile";
   } catch (error) {
     console.log(error);
