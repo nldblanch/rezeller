@@ -13,6 +13,8 @@ export const Hero = ({ user: { username, avatar_url } }: PartialUser) => {
           className="aspect-square h-full w-full"
           src={avatar_url}
           alt="users avatar"
+          height={500}
+          width={500}
         />
       </div>
       <h2 className="col-span-5 col-start-2 text-sm mobile-landscape:col-start-8 mobile-landscape:text-xl tablet-landscape:col-span-4 tablet-landscape:col-start-5">

@@ -17,6 +17,8 @@ export default function Loading() {
             src=""
             alt="loading"
             className={`col-span-5 row-span-full desktop:col-span-3 ${styles.square_image_skeleton} h-full w-full`}
+            width="20"
+            height="20"
           />
 
           <h3
@@ -31,6 +33,8 @@ export default function Loading() {
             src=""
             alt="loading"
             className={`col-span-5 row-span-full desktop:col-span-3 ${styles.square_image_skeleton} h-full w-full`}
+            width="20"
+            height="20"
           />
 
           <h3
@@ -45,6 +49,8 @@ export default function Loading() {
             src=""
             className={`col-span-5 row-span-full desktop:col-span-3 ${styles.square_image_skeleton} h-full w-full`}
             alt="loading"
+            width="20"
+            height="20"
           />
 
           <h3

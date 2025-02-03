@@ -15,6 +15,8 @@ export default function Hero({ item, user }: { item: Item; user: User }) {
         className="col-span-12 col-start-1 aspect-square w-full object-cover mobile-landscape:col-span-6"
         src={mainPhoto ?? ""}
         alt={photo_description}
+        height={500}
+        width={500}
       />
       <div className="col-span-12 p-4 mobile-landscape:col-span-6">
         <h2 className="text-2xl">{capitaliseFirstLetters(name)}</h2>
@@ -39,6 +41,8 @@ export default function Hero({ item, user }: { item: Item; user: User }) {
                     src={photo}
                     alt="hero shot"
                     className="col-span-1 h-full w-full rounded-lg object-cover"
+                    height={500}
+                    width={500}
                   />
                 </button>
               </li>

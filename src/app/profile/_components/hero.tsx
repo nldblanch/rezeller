@@ -9,9 +9,11 @@ export const Hero = ({ user }: { user: User }) => {
       <p className="col-span-full col-start-2">Hi {username}!</p>
       <div className="col-span-full row-span-12 flex justify-center mobile-landscape:col-span-6 mobile-landscape:col-start-1 tablet-landscape:col-span-3">
         <Image
-          className="aspect-square h-full w-full"
+          className="aspect-square"
           src={avatar_url ?? ""}
           alt="users avatar"
+          height={500}
+          width={500}
         />
       </div>
       <h2 className="col-span-5 col-start-2 text-sm mobile-landscape:col-start-8 mobile-landscape:text-xl tablet-landscape:col-span-4 tablet-landscape:col-start-5">

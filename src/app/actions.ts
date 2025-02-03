@@ -1,19 +1,19 @@
 "use server";
 
-import type { RequestCookie } from "next/dist/compiled/@edge-runtime/cookies";
 import { cookies } from "next/headers";
-import { notFound, redirect } from "next/navigation";
+import { redirect } from "next/navigation";
+import { api } from "~/trpc/server";
 
-export async function loginUser(userId: string) {
-  (await cookies()).set("user_id", userId, { httpOnly: true });
+export async function loginUser(index: string) {
+  const users = await api.user.getUsers();
+  const user_id = users[Number(index) - 1]?.id ?? 0;
+  (await cookies()).set("user_id", String(user_id), { httpOnly: true });
   redirect("/profile");
 }
 
-export async function logoutUser(userId: RequestCookie) {
+export async function logoutUser() {
   const requestCookies = await cookies();
-  if (requestCookies.get("user_id") !== userId) return notFound();
-  else {
-    requestCookies.delete("user_id");
-    redirect("/");
-  }
+
+  requestCookies.delete("user_id");
+  redirect("/");
 }

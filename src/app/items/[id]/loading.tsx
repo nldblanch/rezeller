@@ -17,6 +17,8 @@ export default function Loading() {
             src=""
             alt="loading"
             className={`col-span-12 col-start-1 w-full mobile-landscape:col-span-6 ${styles.square_image_skeleton}`}
+            width="20"
+            height="20"
           />
           <div className="col-span-12 p-4 mobile-landscape:col-span-6">
             <h2 className={`w-full text-2xl ${styles.header_skeleton} h-10`} />

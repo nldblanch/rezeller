@@ -11,7 +11,7 @@ export default function HeaderLinks({
   return user_id ? (
     <>
       <li>
-        <form action={async () => await logoutUser(user_id)}>
+        <form action={async () => await logoutUser()}>
           <button type="submit">Logout</button>
         </form>
       </li>

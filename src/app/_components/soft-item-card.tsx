@@ -19,6 +19,8 @@ export const SoftItemCard = ({
           src={item.photo_source[0] ?? ""}
           alt={item.name}
           className="aspect-square rounded-lg object-cover"
+          width="20"
+          height="20"
         />
         <h3 className="px-2 pt-2">{capitaliseFirstLetters(item.name)}</h3>
         <p className="px-2 font-semibold">{convertPennyToPounds(item.price)}</p>

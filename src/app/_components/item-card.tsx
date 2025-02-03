@@ -14,6 +14,8 @@ export const ItemCard = ({ item }: { item: Item }) => {
           src={item.photo_source[0] ?? ""}
           alt={item.name}
           className="col-span-5 row-span-full aspect-square object-cover desktop:col-span-3"
+          height={500}
+          width={500}
         />
 
         <h3 className="col-span-7 px-2">{capitaliseFirstLetters(item.name)}</h3>
