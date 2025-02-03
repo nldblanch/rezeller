@@ -2,6 +2,7 @@ import { cookies } from "next/headers";
 import Link from "next/link";
 import HeaderLinks from "./header-links";
 import SearchBar from "./search-bar";
+import { Suspense } from "react";
 
 export default async function Header({ searchbar }: { searchbar: boolean }) {
   const user_id = (await cookies()).get("user_id");
@@ -13,13 +14,17 @@ export default async function Header({ searchbar }: { searchbar: boolean }) {
           <Link href="/">REZELLER</Link>
         </div>
         <div className="hidden mobile-landscape:col-span-6 mobile-landscape:col-start-4 mobile-landscape:block">
-          {searchbar && <SearchBar />}
+          <Suspense fallback={<div>Loading search...</div>}>
+            {searchbar && <SearchBar />}
+          </Suspense>
         </div>
         <ul className="col-span-6 flex justify-end gap-4 mobile-landscape:col-span-3 mobile-landscape:col-start-10">
           <HeaderLinks user_id={user_id} />
         </ul>
         <div className="col-span-full mobile-landscape:hidden">
-          {searchbar && <SearchBar />}
+          <Suspense fallback={<div>Loading search...</div>}>
+            {searchbar && <SearchBar />}
+          </Suspense>
         </div>
       </nav>
     </header>

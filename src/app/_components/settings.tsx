@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { CategoriesList } from "./categories-list";
 import { PriceInput } from "./price-input";
 
@@ -6,7 +7,9 @@ export const Settings = () => {
     <section className="col-span-3 h-full pr-2 max-tablet:hidden tablet-landscape:col-span-2 tablet-landscape:col-start-2 desktop:col-span-1 desktop:col-start-3">
       <hgroup>
         <h2 className="text-xs">Category</h2>
-        <CategoriesList />
+        <Suspense fallback={<div>Loading categories...</div>}>
+          <CategoriesList />
+        </Suspense>
       </hgroup>
       <hgroup className="pt-2">
         <h2 className="text-xs">Price</h2>

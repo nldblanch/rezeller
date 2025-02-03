@@ -1,5 +1,5 @@
 "use client";
-import { useLayoutEffect, useMemo, useState } from "react";
+import { Suspense, useLayoutEffect, useMemo, useState } from "react";
 
 import { SubcategoryDropdown } from "~/app/_components/subcategory-dropdown";
 import { CategoryDropdown } from "./category-dropdown";
@@ -47,7 +47,12 @@ export const Categories = () => {
       >
         {categoriesToShow?.map((category) => {
           return (
-            <SubcategoryDropdown key={category.name} category={category.name} />
+            <Suspense
+              key={category.name}
+              fallback={<div>Loading dropdown...</div>}
+            >
+              <SubcategoryDropdown category={category.name} />
+            </Suspense>
           );
         })}
         {categoryReducer > 0 && (
