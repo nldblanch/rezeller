@@ -1,7 +1,8 @@
 import { api } from "~/trpc/server";
 import ItemListClient from "./item-list-client";
+import { NoItemError } from "~/server/api/routers/items";
 import { notFound } from "next/navigation";
-
+import { TRPCError } from "@trpc/server";
 export default async function ItemListServer({
   searchParams,
 }: {
@@ -18,7 +19,7 @@ export default async function ItemListServer({
     | "date_listed"
     | undefined;
   const order = searchParams.order as "asc" | "desc" | undefined;
-  const p = Number(searchParams.p?.toString()) ?? 1;
+  const p = searchParams.p?.toString() ?? "1";
   try {
     const items = await api.items.fetchAllItems({
       category_id,
@@ -31,7 +32,20 @@ export default async function ItemListServer({
       p,
     });
     return <ItemListClient items={items} />;
-  } catch {
-    return notFound();
+  } catch (error) {
+    if (error instanceof TRPCError && error.cause instanceof NoItemError) {
+      const noItemError = error.cause;
+      const {youMightLike} = noItemError
+      return (
+        <>
+          <h2>We didn't find anything.</h2>
+          {youMightLike && <h3>You might like...</h3>}
+          {youMightLike && <ItemListClient items={youMightLike} />}
+        </>
+      );
+    }
+
+    console.error("Unexpected error:", error);
+    return <p>Something went wrong</p>;
   }
 }

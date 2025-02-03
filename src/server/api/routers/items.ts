@@ -1,5 +1,23 @@
 import { z } from "zod";
+import type { Item } from "~/app/types/item";
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
+
+export class NoItemError extends Error {
+  category_id: number;
+  subcategory_id: number;
+  youMightLike: Item[]
+  constructor(
+    message: string,
+    category_id: number | undefined,
+    subcategory_id: number | undefined,
+    youMightLike: Item[] | undefined
+  ) {
+    super(message);
+    this.category_id = category_id ?? 0;
+    this.subcategory_id = subcategory_id ?? 0;
+    this.youMightLike = youMightLike ?? []
+  }
+}
 
 export const itemsRouter = createTRPCRouter({
   fetchAllItems: publicProcedure
@@ -12,7 +30,7 @@ export const itemsRouter = createTRPCRouter({
         price_to: z.string().transform(Number).optional(),
         sort_by: z.enum(["name", "price", "date_listed"]).optional(),
         order: z.enum(["asc", "desc"]).optional(),
-        p: z.number().min(1).default(1),
+        p: z.string().min(1).transform(Number),
       }),
     )
     .query(async ({ ctx, input }) => {
@@ -31,7 +49,7 @@ export const itemsRouter = createTRPCRouter({
           available_item: true,
           category_id,
           subcategory_id,
-          tag: tag ? { contains: tag } : undefined,
+          name: tag ? { contains: tag, mode: "insensitive" } : undefined,
           price: {
             gte: price_from,
             lte: price_to,
@@ -44,7 +62,31 @@ export const itemsRouter = createTRPCRouter({
       });
 
       if (!items.length) {
-        return Promise.reject(new Error("No items found"));
+        const relevantItem = await ctx.db.items.findFirst({
+          where: {
+            available_item: false,
+            category_id,
+            subcategory_id,
+            name: tag ? { contains: tag, mode: "insensitive" } : undefined,
+            price: {
+              gte: price_from,
+              lte: price_to,
+            },
+          },
+        });
+        const youMightLike = await ctx.db.items.findMany({
+          where: {
+            subcategory_id: subcategory_id ?? relevantItem?.subcategory_id ?? 1
+          }
+        })
+        return Promise.reject(
+          new NoItemError(
+            "No items found",
+            relevantItem?.category_id,
+            relevantItem?.subcategory_id,
+            youMightLike
+          ),
+        );
       }
 
       return items;
