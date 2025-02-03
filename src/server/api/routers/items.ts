@@ -5,11 +5,11 @@ export const itemsRouter = createTRPCRouter({
   fetchAllItems: publicProcedure
     .input(
       z.object({
-        category_id: z.number().optional(),
-        subcategory_id: z.number().optional(),
+        category_id: z.string().transform(Number).optional(),
+        subcategory_id: z.string().transform(Number).optional(),
         tag: z.string().optional(),
-        price_from: z.number().optional(),
-        price_to: z.number().optional(),
+        price_from: z.string().transform(Number).optional(),
+        price_to: z.string().transform(Number).optional(),
         sort_by: z.enum(["name", "price", "date_listed"]).optional(),
         order: z.enum(["asc", "desc"]).optional(),
         p: z.number().min(1).default(1),
@@ -26,12 +26,10 @@ export const itemsRouter = createTRPCRouter({
         order = "asc",
         p,
       } = input;
-
       const items = await ctx.db.items.findMany({
         where: {
           available_item: true,
           category_id,
-
           subcategory_id,
           tag: tag ? { contains: tag } : undefined,
           price: {
@@ -53,7 +51,7 @@ export const itemsRouter = createTRPCRouter({
     }),
 
   fetchItem: publicProcedure
-    .input(z.object({ id: z.number() }))
+    .input(z.object({ id: z.string().transform(Number) }))
     .query(async ({ ctx, input }) => {
       const item = await ctx.db.items.findUnique({
         where: { id: input.id },

@@ -1,0 +1,55 @@
+"use client";
+import { useState } from "react";
+
+import HeroUsername from "./hero-username";
+import { Item, User } from "~/app/types/item";
+import { capitaliseFirstLetters, convertPennyToPounds } from "~/app/scripts";
+
+export default function Hero({ item, user }: { item: Item; user: User }) {
+  const {
+    name = "",
+    photo_source = [],
+    photo_description,
+    user_id = 0,
+    price = 0,
+  } = item;
+  const [mainPhoto, setMainPhoto] = useState(photo_source[0]);
+  return (
+    <section className="grid grid-cols-12">
+      <img
+        className="mobile-landscape:col-span-6 col-span-12 col-start-1 aspect-square w-full object-cover"
+        src={mainPhoto}
+        alt={photo_description}
+      />
+      <div className="mobile-landscape:col-span-6 col-span-12 p-4">
+        <h2 className="text-2xl">{capitaliseFirstLetters(name)}</h2>
+        <div className="my-2 border-t" />
+        <HeroUsername user={user} />
+        <div className="my-2 border-t" />
+        <p className="text-2xl">{convertPennyToPounds(price)}</p>
+        <ul className="mt-2 grid grid-cols-3 gap-2">
+          {photo_source.map((photo, index) => {
+            return (
+              <li key={index} className="aspect-square">
+                <button
+                  className="h-full w-full"
+                  onClick={() =>
+                    setMainPhoto((prev) => {
+                      if (prev !== photo) return photo;
+                      return prev;
+                    })
+                  }
+                >
+                  <img
+                    src={photo}
+                    className="col-span-1 h-full w-full rounded-lg object-cover"
+                  />
+                </button>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    </section>
+  );
+}
