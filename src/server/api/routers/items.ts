@@ -212,4 +212,15 @@ export const itemsRouter = createTRPCRouter({
       });
       return items;
     }),
+
+  fetchOrderItems: publicProcedure
+    .input(z.array(z.number()))
+    .query(async ({ ctx, input }) => {
+      const items = await ctx.db.items.findMany({
+        where: {
+          id: { in: input },
+        },
+      });
+      return items;
+    }),
 });

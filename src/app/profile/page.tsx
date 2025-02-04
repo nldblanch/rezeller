@@ -14,7 +14,7 @@ export default async function Profile() {
   }
 
   const user = await api.user.getUserById({ id: user_id });
-  
+
   return user ? (
     <main className="mobile-landscape:mx-2 mobile-landscape:px-2">
       <Hero user={user} />
