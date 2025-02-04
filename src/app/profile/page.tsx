@@ -1,5 +1,5 @@
 import { Feedback } from "./_components/feedback";
-import { Hero } from "./_components/hero";
+import Hero from "./_components/hero";
 import Items from "./_components/items";
 import { api } from "~/trpc/server";
 import { cookies } from "next/headers";
@@ -14,6 +14,7 @@ export default async function Profile() {
   }
 
   const user = await api.user.getUserById({ id: user_id });
+  
   return user ? (
     <main className="mobile-landscape:mx-2 mobile-landscape:px-2">
       <Hero user={user} />
