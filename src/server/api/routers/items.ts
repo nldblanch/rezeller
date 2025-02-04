@@ -5,17 +5,17 @@ import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 export class NoItemError extends Error {
   category_id: number;
   subcategory_id: number;
-  youMightLike: Item[]
+  youMightLike: Item[];
   constructor(
     message: string,
     category_id: number | undefined,
     subcategory_id: number | undefined,
-    youMightLike: Item[] | undefined
+    youMightLike: Item[] | undefined,
   ) {
     super(message);
     this.category_id = category_id ?? 0;
     this.subcategory_id = subcategory_id ?? 0;
-    this.youMightLike = youMightLike ?? []
+    this.youMightLike = youMightLike ?? [];
   }
 }
 
@@ -24,6 +24,7 @@ export const itemsRouter = createTRPCRouter({
     .input(
       z.object({
         category_id: z.string().transform(Number).optional(),
+        category: z.string().optional(),
         subcategory_id: z.string().transform(Number).optional(),
         tag: z.string().optional(),
         price_from: z.string().transform(Number).optional(),
@@ -36,6 +37,7 @@ export const itemsRouter = createTRPCRouter({
     .query(async ({ ctx, input }) => {
       const {
         category_id,
+        category,
         subcategory_id,
         tag,
         price_from,
@@ -44,47 +46,69 @@ export const itemsRouter = createTRPCRouter({
         order = "asc",
         p,
       } = input;
+      console.log(input);
+      const options = !(category || category_id)
+        ? { available_item: true }
+        : {
+            OR: [
+              category_id ? { category_id } : null,
+              category ? { category: { category_name: category } } : null,
+            ].filter((item) => item !== null),
+            AND: [
+              { available_item: true },
+              subcategory_id ? { subcategory_id } : null,
+              tag ? { name: { contains: tag } } : null,
+              price_from && price_to
+                ? {
+                    price: {
+                      gte: price_from,
+                      lte: price_to,
+                    },
+                  }
+                : null,
+            ].filter((el) => el !== null),
+          };
       const items = await ctx.db.items.findMany({
-        where: {
-          available_item: true,
-          category_id,
-          subcategory_id,
-          name: tag ? { contains: tag, mode: "insensitive" } : undefined,
-          price: {
-            gte: price_from,
-            lte: price_to,
-          },
-        },
+        where: options,
         orderBy: { [sort_by]: order },
         take: 15,
         skip: (p - 1) * 15,
         include: { category: true, subcategory: true },
       });
-
       if (!items.length) {
         const relevantItem = await ctx.db.items.findFirst({
           where: {
-            available_item: false,
-            category_id,
-            subcategory_id,
-            name: tag ? { contains: tag, mode: "insensitive" } : undefined,
-            price: {
-              gte: price_from,
-              lte: price_to,
-            },
+            OR: [
+              category_id ? { category_id } : null,
+              category ? { category: { category_name: category } } : null,
+            ].filter((item) => item !== null),
+            AND: [
+              { available_item: false },
+              { subcategory_id },
+              {
+                name: tag ? { contains: tag, mode: "insensitive" } : undefined,
+              },
+
+              {
+                price: {
+                  gte: price_from,
+                  lte: price_to,
+                },
+              },
+            ],
           },
         });
         const youMightLike = await ctx.db.items.findMany({
           where: {
-            subcategory_id: subcategory_id ?? relevantItem?.subcategory_id ?? 1
-          }
-        })
+            subcategory_id: subcategory_id ?? relevantItem?.subcategory_id ?? 1,
+          },
+        });
         return Promise.reject(
           new NoItemError(
             "No items found",
             relevantItem?.category_id,
             relevantItem?.subcategory_id,
-            youMightLike
+            youMightLike,
           ),
         );
       }

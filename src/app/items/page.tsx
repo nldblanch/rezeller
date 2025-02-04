@@ -10,7 +10,7 @@ export default async function Items({
   const searchParams = await search;
   return (
     <HydrateClient>
-      <main className="rid grid-cols-12 tablet:mx-2 tablet:px-2">
+      <main className="grid grid-cols-12 tablet:mx-2 tablet:px-2">
         <Settings />
         <ItemListServer searchParams={searchParams} />
       </main>

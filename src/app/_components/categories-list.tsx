@@ -15,7 +15,7 @@ export const CategoriesList = () => {
         return (
           <div key={category.name}>
             <Link href={`/items?category=${category.name}`}>
-              <li className="items-left flex h-full w-full flex-col text-[8px] text-blue-600">
+              <li className="items-left flex h-full w-full flex-col text-sm text-blue-600">
                 <p
                   className={`h-full p-1 hover:bg-zinc-950 ${
                     activeCategory === category.name ? "bg-zinc-900" : ""

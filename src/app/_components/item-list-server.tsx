@@ -1,7 +1,6 @@
 import { api } from "~/trpc/server";
 import ItemListClient from "./item-list-client";
 import { NoItemError } from "~/server/api/routers/items";
-import { notFound } from "next/navigation";
 import { TRPCError } from "@trpc/server";
 export default async function ItemListServer({
   searchParams,
@@ -9,7 +8,8 @@ export default async function ItemListServer({
   searchParams: Record<string, string | string[] | undefined>;
 }) {
   const searchTerm = searchParams.search?.toString();
-  const category_id = searchParams.category?.toString();
+  const category_id = searchParams.category_id?.toString();
+  const category = searchParams.category?.toString();
   const subcategory_id = searchParams.subcategory?.toString();
   const min_price = searchParams.min_price?.toString();
   const max_price = searchParams.max_price?.toString();
@@ -23,6 +23,7 @@ export default async function ItemListServer({
   try {
     const items = await api.items.fetchAllItems({
       category_id,
+      category,
       subcategory_id,
       price_from: min_price,
       price_to: max_price,
@@ -35,13 +36,19 @@ export default async function ItemListServer({
   } catch (error) {
     if (error instanceof TRPCError && error.cause instanceof NoItemError) {
       const noItemError = error.cause;
-      const {youMightLike} = noItemError
+      const { youMightLike } = noItemError;
       return (
-        <>
-          <h2>We didn't find anything.</h2>
-          {youMightLike && <h3>You might like...</h3>}
+        <section className="col-span-8">
+          <h2 className="col-span-8 col-start-4 row-span-1 py-2 text-xl">
+            We didn&apos;t find anything.
+          </h2>
+          {youMightLike && (
+            <h3 className="col-span-8 col-start-4 row-start-2 py-2">
+              You might like...
+            </h3>
+          )}
           {youMightLike && <ItemListClient items={youMightLike} />}
-        </>
+        </section>
       );
     }
 
