@@ -7,7 +7,6 @@ import { categories } from "~/app/constants/categories";
 
 export const Categories = () => {
   const [categoryReducer, setCategoryReducer] = useState(0);
-  const [width, setWidth] = useState(0)
   const breakpoints = useMemo(
     () => [
       { maxWidth: 500, reduceBy: 6 },
@@ -26,7 +25,6 @@ export const Categories = () => {
       const category = breakpoints.find(
         (breakpoint) => window.innerWidth <= breakpoint.maxWidth,
       ) ?? { reduceBy: 0 };
-      setWidth(window.innerWidth)
       setCategoryReducer(category.reduceBy);
     }
     window.addEventListener("resize", updateSize);
