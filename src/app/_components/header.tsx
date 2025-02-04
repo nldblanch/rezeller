@@ -11,7 +11,9 @@ export default async function Header({ searchbar }: { searchbar: boolean }) {
     <header className="">
       <nav className="grid grid-cols-12 gap-2 p-2">
         <div className="col-span-6 mobileLandscape:col-span-3">
-          <Link className="text-2xl tabletLandscape::text-3xl" href="/">REZELLER</Link>
+          <Link className="tabletLandscape::text-3xl text-2xl" href="/">
+            REZELLER
+          </Link>
         </div>
         <div className="hidden tablet:col-span-6 tablet:col-start-4 tablet:block">
           <Suspense fallback={<div>Loading search...</div>}>

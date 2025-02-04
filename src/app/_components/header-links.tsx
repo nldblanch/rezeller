@@ -12,16 +12,22 @@ export default function HeaderLinks({
     <>
       <li>
         <form action={async () => await logoutUser()}>
-          <button type="submit" className="text-lg">Logout</button>
+          <button type="submit" className="text-lg">
+            Logout
+          </button>
         </form>
       </li>
       <li>
-        <Link href="/profile" className="text-lg">Profile</Link>
+        <Link href="/profile" className="text-lg">
+          Profile
+        </Link>
       </li>
     </>
   ) : (
     <li>
-      <Link href="/login" className="text-lg">Login</Link>
+      <Link href="/login" className="text-lg">
+        Login
+      </Link>
     </li>
   );
 }

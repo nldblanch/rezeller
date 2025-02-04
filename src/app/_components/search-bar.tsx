@@ -16,7 +16,7 @@ export default function SearchBar() {
   }, [initialSearchValue]);
 
   return (
-    <section className="col-span-full h-full w-full mobileLandscape:col-span-6 mobileLandscape:col-start-4 flex">
+    <section className="col-span-full flex h-full w-full mobileLandscape:col-span-6 mobileLandscape:col-start-4">
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -47,7 +47,10 @@ export default function SearchBar() {
           name="search"
           type="text"
         />
-        <button className="rounded-full bg-blue-600 px-2 text-baSE" type="submit">
+        <button
+          className="text-baSE rounded-full bg-blue-600 px-2"
+          type="submit"
+        >
           Search
         </button>
       </form>
