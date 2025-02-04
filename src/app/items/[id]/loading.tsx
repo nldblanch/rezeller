@@ -11,16 +11,16 @@ const styles = {
 export default function Loading() {
   return (
     <>
-      <main className="mobile-landscape:mx-2 mobile-landscape:px-2">
+      <main className="mobileLandscape:mx-2 mobileLandscape:px-2">
         <section className="grid grid-cols-12">
           <Image
-            src=""
+            src="/loading_background.png"
             alt="loading"
-            className={`col-span-12 col-start-1 w-full mobile-landscape:col-span-6 ${styles.square_image_skeleton}`}
+            className={`col-span-12 col-start-1 w-full mobileLandscape:col-span-6 ${styles.square_image_skeleton}`}
             width="20"
             height="20"
           />
-          <div className="col-span-12 p-4 mobile-landscape:col-span-6">
+          <div className="col-span-12 p-4 mobileLandscape:col-span-6">
             <h2 className={`w-full text-2xl ${styles.header_skeleton} h-10`} />
             <div className="my-2" />
             <p className={`h-6 w-2/3 ${styles.text_skeleton}`} />
@@ -28,7 +28,7 @@ export default function Loading() {
             <p className={`h-6 w-4/5 ${styles.text_skeleton}`} />
           </div>
         </section>
-        <section className="m-2 grid grid-cols-12 p-2 opacity-50 mobile-landscape:mx-0 mobile-landscape:px-0">
+        <section className="m-2 grid grid-cols-12 p-2 opacity-50 mobileLandscape:mx-0 mobileLandscape:px-0">
           <div className="col-span-12 mb-3" />
           <h4
             className={`col-span-full mb-1 w-full ${styles.small_header_skeleton}`}
@@ -44,7 +44,7 @@ export default function Loading() {
           />
           <div className="col-span-12 mt-3" />
         </section>
-        <section className="m-2 p-2 mobile-landscape:mx-0 mobile-landscape:px-0">
+        <section className="m-2 p-2 mobileLandscape:mx-0 mobileLandscape:px-0">
           <h4 className={`w-full ${styles.small_header_skeleton}`} />
           <p className={`mt-1 w-5/6 ${styles.small_text_skeleton}`} />
         </section>

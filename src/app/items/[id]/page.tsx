@@ -17,7 +17,7 @@ export default async function Item({
   if (!user) return notFound();
   return (
     <HydrateClient>
-      <main className="min-h-screen mobile-landscape:mx-2 mobile-landscape:px-2">
+      <main className="min-h-screen mobileLandscape:mx-2 mobileLandscape:px-2">
         <Categories />
         <Hero item={item} user={user} />
         <SmallInfo item={item} />

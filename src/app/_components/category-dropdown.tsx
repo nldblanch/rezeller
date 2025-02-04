@@ -8,7 +8,7 @@ export const CategoryDropdown = ({ categories }: { categories: string[] }) => {
   const [hasVisited, setHasVisited] = useState(false);
   return (
     <li
-      className="text center p-2 text-[8px] text-blue-500 hover:bg-zinc-950"
+      className="text center p-2 text-base text-blue-500 hover:bg-zinc-950"
       onMouseLeave={() => {
         if (!hasVisited) setShowMore(false);
       }}
@@ -26,7 +26,7 @@ export const CategoryDropdown = ({ categories }: { categories: string[] }) => {
         >
           {categories?.map((category) => (
             <Link href={`/items?category=${category}`} key={category}>
-              <li className="p-1 text-[8px] text-black hover:bg-zinc-100">
+              <li className="p-1 text-base text-black hover:bg-zinc-100">
                 {convertCategory(category)}
               </li>
             </Link>

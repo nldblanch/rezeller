@@ -12,7 +12,7 @@ export const SoftItemCard = ({
 }) => {
   return (
     <li
-      className={`col-span-full aspect-square mobile-landscape:col-span-6 tablet-landscape:col-span-4 desktop:col-span-2 ${styles}`}
+      className={`col-span-full aspect-square mobileLandscape:col-span-6 tabletLandscape:col-span-4 desktop:col-span-2 ${styles}`}
     >
       <Link href={`/items/${item.id}`}>
         <Image

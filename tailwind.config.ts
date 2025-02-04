@@ -6,9 +6,9 @@ export default {
   theme: {
     screens: {
       mobile: "320px",
-      "mobile-landscape": "480px",
+      mobileLandscape: "480px",
       tablet: "640px",
-      "tablet-landscape": "800px",
+      tabletLandscape: "800px",
       laptop: "1024px",
       desktop: "1280px",
     },

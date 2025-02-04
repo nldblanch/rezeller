@@ -16,7 +16,7 @@ export default function SearchBar() {
   }, [initialSearchValue]);
 
   return (
-    <section className="col-span-full w-full mobile-landscape:col-span-6 mobile-landscape:col-start-4">
+    <section className="col-span-full h-full w-full mobileLandscape:col-span-6 mobileLandscape:col-start-4 flex">
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -35,18 +35,19 @@ export default function SearchBar() {
         <Image
           src={`/search_icon.png`}
           alt="search icon"
-          width="20"
-          height="12"
+          width="32"
+          height="32"
+          className="aspect-square rounded-none"
         />
         <input
-          className="autofill-input w-full rounded-full bg-white px-2 text-sm text-black focus:outline-none"
+          className="autofill-input w-full rounded-full bg-white px-2 text-base text-black focus:outline-none"
           placeholder="Search for anything"
           value={searchValue}
           onChange={(e) => setSearchValue(e.target.value)}
           name="search"
           type="text"
         />
-        <button className="rounded-full bg-blue-600 px-2 text-sm" type="submit">
+        <button className="rounded-full bg-blue-600 px-2 text-baSE" type="submit">
           Search
         </button>
       </form>

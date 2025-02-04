@@ -25,7 +25,7 @@ export default function OrdersModalClient({
   return (
     <>
       <a
-        className="col-span-full col-start-2 cursor-pointer text-sm hover:underline mobile-landscape:col-start-8 tablet-landscape:col-start-5 tablet-landscape:text-base"
+        className="col-span-full col-start-2 cursor-pointer text-sm hover:underline mobileLandscape:col-start-8 tabletLandscape:col-start-5 tabletLandscape:text-base"
         onClick={() => setModalActive(true)}
       >
         View your orders

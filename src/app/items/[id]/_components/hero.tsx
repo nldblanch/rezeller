@@ -12,13 +12,13 @@ export default function Hero({ item, user }: { item: Item; user: User }) {
   return (
     <section className="grid grid-cols-12">
       <Image
-        className="col-span-12 col-start-1 aspect-square w-full object-cover mobile-landscape:col-span-6"
-        src={mainPhoto ?? ""}
+        className="col-span-12 col-start-1 aspect-square w-full object-cover mobileLandscape:col-span-6"
+        src={mainPhoto ?? "/loading_background.png"}
         alt={photo_description}
         height={500}
         width={500}
       />
-      <div className="col-span-12 p-4 mobile-landscape:col-span-6">
+      <div className="col-span-12 p-4 mobileLandscape:col-span-6">
         <h2 className="text-2xl">{capitaliseFirstLetters(name)}</h2>
         <div className="my-2 border-t" />
         <HeroUsername user={user} />

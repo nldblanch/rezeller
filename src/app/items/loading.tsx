@@ -14,7 +14,7 @@ export default function Loading() {
       <li className="col-span-full">
         <section className="grid w-full grid-cols-12 grid-rows-6 desktop:grid-rows-1">
           <Image
-            src=""
+            src="/loading_background.png"
             alt="loading"
             className={`col-span-5 row-span-full desktop:col-span-3 ${styles.square_image_skeleton} h-full w-full`}
             width="20"
@@ -30,7 +30,7 @@ export default function Loading() {
       <li className="col-span-full">
         <section className="grid w-full grid-cols-12 grid-rows-6 desktop:grid-rows-1">
           <Image
-            src=""
+            src="/loading_background.png"
             alt="loading"
             className={`col-span-5 row-span-full desktop:col-span-3 ${styles.square_image_skeleton} h-full w-full`}
             width="20"
@@ -46,7 +46,7 @@ export default function Loading() {
       <li className="col-span-full">
         <section className="grid w-full grid-cols-12 grid-rows-6 desktop:grid-rows-1">
           <Image
-            src=""
+            src="/loading_background.png"
             className={`col-span-5 row-span-full desktop:col-span-3 ${styles.square_image_skeleton} h-full w-full`}
             alt="loading"
             width="20"

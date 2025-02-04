@@ -18,7 +18,7 @@ export const SubcategoryDropdown = ({ category }: { category: string }) => {
 
   return (
     <div
-      className={`text-[8px] hover:bg-zinc-950 hover:shadow-lg ${currentUrlCategory === category ? "bg-zinc-900" : ""} `}
+      className={`text-base hover:bg-zinc-950 hover:shadow-lg ${currentUrlCategory === category ? "bg-zinc-900" : ""} `}
       onMouseLeave={() => {
         if (!hasVisited) setShowMore(false);
       }}
@@ -38,7 +38,7 @@ export const SubcategoryDropdown = ({ category }: { category: string }) => {
         >
           {subcategories?.map((subcategory) => (
             <Link href={`/items?subcategory=${subcategory}`} key={subcategory}>
-              <li className="p-1 text-[8px] text-black hover:bg-zinc-100">
+              <li className="p-1 text-base text-black hover:bg-zinc-100">
                 {convertCategory(subcategory)}
               </li>
             </Link>
