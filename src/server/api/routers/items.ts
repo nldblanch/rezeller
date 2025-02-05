@@ -1,3 +1,4 @@
+import { Prisma } from "@prisma/client";
 import { z } from "zod";
 import type { Item } from "~/app/types/item";
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
@@ -26,6 +27,7 @@ export const itemsRouter = createTRPCRouter({
         category_id: z.string().transform(Number).optional(),
         category: z.string().optional(),
         subcategory_id: z.string().transform(Number).optional(),
+        subcategory: z.string().optional(),
         tag: z.string().optional(),
         price_from: z.string().transform(Number).optional(),
         price_to: z.string().transform(Number).optional(),
@@ -39,6 +41,7 @@ export const itemsRouter = createTRPCRouter({
         category_id,
         category,
         subcategory_id,
+        subcategory,
         tag,
         price_from,
         price_to,
@@ -46,57 +49,33 @@ export const itemsRouter = createTRPCRouter({
         order = "asc",
         p,
       } = input;
-      console.log(input);
-      const options = !(category || category_id)
-        ? { available_item: true }
-        : {
-            OR: [
-              category_id ? { category_id } : null,
-              category ? { category: { category_name: category } } : null,
-            ].filter((item) => item !== null),
-            AND: [
-              { available_item: true },
-              subcategory_id ? { subcategory_id } : null,
-              tag ? { name: { contains: tag } } : null,
-              price_from && price_to
-                ? {
-                    price: {
-                      gte: price_from,
-                      lte: price_to,
-                    },
-                  }
-                : null,
-            ].filter((el) => el !== null),
-          };
+
+      const where = {
+        available_item: true,
+        ...(category_id && { category_id }),
+        ...(category && { category: {category_name: category} }),
+        ...(subcategory_id && { subcategory_id }),
+        ...(subcategory && { subcategory: {subcategory_name: subcategory} }),
+        ...(tag && {
+          name: { contains: tag, mode: Prisma.QueryMode.insensitive },
+        }),
+        ...(price_from !== undefined &&
+          price_to !== undefined && {
+            price: { gte: price_from, lte: price_to },
+          }),
+      };
+
       const items = await ctx.db.items.findMany({
-        where: options,
+        where: where,
         orderBy: { [sort_by]: order },
         take: 15,
         skip: (p - 1) * 15,
         include: { category: true, subcategory: true },
       });
       if (!items.length) {
+        where.available_item = false
         const relevantItem = await ctx.db.items.findFirst({
-          where: {
-            OR: [
-              category_id ? { category_id } : null,
-              category ? { category: { category_name: category } } : null,
-            ].filter((item) => item !== null),
-            AND: [
-              { available_item: false },
-              { subcategory_id },
-              {
-                name: tag ? { contains: tag, mode: "insensitive" } : undefined,
-              },
-
-              {
-                price: {
-                  gte: price_from,
-                  lte: price_to,
-                },
-              },
-            ],
-          },
+          where: where
         });
         const youMightLike = await ctx.db.items.findMany({
           where: {

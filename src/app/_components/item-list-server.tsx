@@ -10,7 +10,8 @@ export default async function ItemListServer({
   const searchTerm = searchParams.search?.toString();
   const category_id = searchParams.category_id?.toString();
   const category = searchParams.category?.toString();
-  const subcategory_id = searchParams.subcategory?.toString();
+  const subcategory_id = searchParams.subcategory_id?.toString();
+  const subcategory = searchParams.subcategory?.toString();
   const min_price = searchParams.min_price?.toString();
   const max_price = searchParams.max_price?.toString();
   const sort_by = searchParams.sort_by as
@@ -25,6 +26,7 @@ export default async function ItemListServer({
       category_id,
       category,
       subcategory_id,
+      subcategory,
       price_from: min_price,
       price_to: max_price,
       tag: searchTerm,
