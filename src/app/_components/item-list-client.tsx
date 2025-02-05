@@ -5,7 +5,7 @@ import { ItemCard } from "./item-card";
 
 export default function ItemListClient({ items }: { items: Item[] }) {
   return (
-    <ul className="col-span-full grid grid-cols-12 gap-4 tablet:col-span-6 tablet:col-start-4">
+    <ul className="col-span-full gap-4 tablet:col-span-6 tablet:col-start-4 flex flex-col">
       {items.map((item) => (
         <ItemCard key={item.id} item={item} />
       ))}

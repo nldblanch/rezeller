@@ -1,6 +1,8 @@
 import { HydrateClient } from "~/trpc/server";
 import { Settings } from "~/app/_components/settings";
 import ItemListServer from "~/app/_components/item-list-server";
+import { Suspense } from "react";
+import Loading from "./loading";
 
 export default async function Items({
   searchParams: search,
@@ -10,9 +12,11 @@ export default async function Items({
   const searchParams = await search;
   return (
     <HydrateClient>
-      <main className="grid grid-cols-12 tablet:mx-2 tablet:px-2">
+      <main className="tablet:mx-2 tablet:px-2 grid grid-cols-12">
         <Settings />
-        <ItemListServer searchParams={searchParams} />
+        <Suspense fallback={<Loading />}>
+          <ItemListServer searchParams={searchParams} />
+        </Suspense>
       </main>
     </HydrateClient>
   );

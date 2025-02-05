@@ -16,6 +16,9 @@ export default {
       fontFamily: {
         sans: ["var(--font-geist-sans)", ...fontFamily.sans],
       },
+      fontSize: {
+        xxs: ["10px", { lineHeight: "12px" }],
+      },
     },
   },
   plugins: [],

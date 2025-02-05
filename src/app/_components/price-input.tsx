@@ -52,17 +52,17 @@ export const PriceInput = () => {
   return (
     <>
       <form
-        className="flex h-full w-full items-center gap-2 p-1"
+        className="flex flex-col desktop:flex-row h-full w-full desktop:items-center gap-2 p-1"
         onSubmit={handleSubmit}
       >
-        <fieldset className="box-border h-full w-full">
-          <div className="relative flex w-full items-center rounded-sm bg-white py-1">
-            <p className="z-50 text-xs text-black">£</p>
+        <fieldset className="box-border h-full w-full max-w-32">
+          <div className="relative flex w-full items-center rounded-sm bg-white py-2">
+            <p className="z-50 text-base text-black">£</p>
             <label
               htmlFor="min-price"
-              className={`z-50 bg-white px-1 text-center text-[8px] text-black ${
+              className={`z-50 absolute bg-white px-1 left-[8%] text-center text-base text-black ${
                 priceState.minFocused || priceState.minValue
-                  ? "-translate-y-3/4 text-[6px]"
+                  ? "-translate-y-[100%] text-xxs"
                   : ""
               }`}
             >
@@ -73,7 +73,7 @@ export const PriceInput = () => {
               inputMode="numeric"
               id="min-price"
               name="min-price"
-              className="absolute h-4/5 w-full appearance-none px-3 text-[8px] text-black"
+              className="absolute h-4/5 w-full appearance-none px-3 text-base text-black"
               onFocus={() => handleFocus("min")}
               onBlur={() => handleBlur("min")}
               value={priceState.minValue}
@@ -82,16 +82,16 @@ export const PriceInput = () => {
           </div>
         </fieldset>
 
-        <p className="text-[8px]">to</p>
+        <p className="text-base">to</p>
 
-        <fieldset className="box-border h-full w-full">
-          <div className="relative flex w-full items-center rounded-sm bg-white py-1">
-            <p className="z-50 text-xs text-black">£</p>
+        <fieldset className="box-border h-full w-full max-w-32">
+          <div className="relative flex w-full items-center rounded-sm bg-white py-2">
+            <p className="z-50 text-base text-black">£</p>
             <label
               htmlFor="max-price"
-              className={`z-50 bg-white px-1 text-center text-[8px] text-black ${
+              className={`z-50 absolute bg-white px-1 left-[8%] text-base text-black ${
                 priceState.maxFocused || priceState.maxValue
-                  ? "-translate-y-3/4 text-[6px]"
+                  ? "-translate-y-[100%] text-xxs"
                   : ""
               }`}
             >
@@ -102,7 +102,7 @@ export const PriceInput = () => {
               inputMode="numeric"
               id="max-price"
               name="max-price"
-              className="absolute h-4/5 w-full appearance-none px-3 text-[8px] text-black"
+              className="absolute h-4/5 w-full appearance-none px-3 text-base bg-white text-black"
               onFocus={() => handleFocus("max")}
               onBlur={() => handleBlur("max")}
               value={priceState.maxValue}
@@ -113,7 +113,7 @@ export const PriceInput = () => {
 
         <button
           type="submit"
-          className="aspect-square rounded-full bg-white p-1 text-[8px] text-black"
+          className="aspect-square rounded-full bg-blue-500 p-2 text-sm text-white font-bold max-h-8 max-w-8 flex justify-center items-center"
         >
           go
         </button>
