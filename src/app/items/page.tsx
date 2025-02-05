@@ -12,7 +12,7 @@ export default async function Items({
   const searchParams = await search;
   return (
     <HydrateClient>
-      <main className="tablet:mx-2 tablet:px-2 grid grid-cols-12">
+      <main className="grid grid-cols-12 tablet:mx-2 tablet:px-2">
         <Settings />
         <Suspense fallback={<Loading />}>
           <ItemListServer searchParams={searchParams} />

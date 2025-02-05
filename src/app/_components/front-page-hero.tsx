@@ -2,11 +2,11 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default function FrontPageHero() {
-//   const styles = {
-//     light: "b46bef",
-//     text: "511f60",
-//     dark: "2c051c",
-//   };
+  //   const styles = {
+  //     light: "b46bef",
+  //     text: "511f60",
+  //     dark: "2c051c",
+  //   };
   return (
     <section className="col-span-full flex h-[34rem] flex-col items-center justify-center gap-16 bg-[#b46bef] p-6 tabletLandscape:h-80 tabletLandscape:flex-row">
       <div className="flex h-full w-full flex-col justify-between tabletLandscape:w-1/4">

@@ -5,7 +5,7 @@ const LoadingSkeleton = () => (
     <main className="mobileLandscape:mx-2 mobileLandscape:px-2">
       <section className="grid grid-cols-12 gap-1 mobileLandscape:mx-0 mobileLandscape:px-0">
         <div className="col-span-full row-span-12 flex justify-center mobileLandscape:col-span-6 mobileLandscape:col-start-1 tabletLandscape:col-span-3">
-          <SVGSkeleton className="aspect-square w-[500px] h-[500px]" />
+          <SVGSkeleton className="aspect-square h-[500px] w-[500px]" />
         </div>
         <h2 className="col-span-5 col-start-2 mobileLandscape:col-start-8 tabletLandscape:col-span-4 tabletLandscape:col-start-5">
           <Skeleton className="w-[104px] max-w-full" />
@@ -24,7 +24,7 @@ const LoadingSkeleton = () => (
           <div className="aspect-square">
             <li className="col-span-full aspect-square mobileLandscape:col-span-6 tabletLandscape:col-span-4 desktop:col-span-2">
               <a>
-                <SVGSkeleton className="aspect-square rounded-lg object-cover w-[500px] h-[500px]" />
+                <SVGSkeleton className="aspect-square h-[500px] w-[500px] rounded-lg object-cover" />
                 <h3 className="px-2 pt-2">
                   <Skeleton className="w-[120px] max-w-full" />
                 </h3>
@@ -37,7 +37,7 @@ const LoadingSkeleton = () => (
           <div className="aspect-square">
             <li className="col-span-full aspect-square mobileLandscape:col-span-6 tabletLandscape:col-span-4 desktop:col-span-2">
               <a>
-                <SVGSkeleton className="aspect-square rounded-lg object-cover w-[500px] h-[500px]" />
+                <SVGSkeleton className="aspect-square h-[500px] w-[500px] rounded-lg object-cover" />
                 <h3 className="px-2 pt-2">
                   <Skeleton className="w-[136px] max-w-full" />
                 </h3>
@@ -50,7 +50,7 @@ const LoadingSkeleton = () => (
           <div className="aspect-square">
             <li className="col-span-full aspect-square mobileLandscape:col-span-6 tabletLandscape:col-span-4 desktop:col-span-2">
               <a>
-                <SVGSkeleton className="aspect-square rounded-lg object-cover w-[500px] h-[500px]" />
+                <SVGSkeleton className="aspect-square h-[500px] w-[500px] rounded-lg object-cover" />
                 <h3 className="px-2 pt-2">
                   <Skeleton className="w-[104px] max-w-full" />
                 </h3>
@@ -63,7 +63,7 @@ const LoadingSkeleton = () => (
           <div className="aspect-square">
             <li className="col-span-full aspect-square mobileLandscape:col-span-6 tabletLandscape:col-span-4 desktop:col-span-2">
               <a>
-                <SVGSkeleton className="aspect-square rounded-lg object-cover w-[500px] h-[500px]" />
+                <SVGSkeleton className="aspect-square h-[500px] w-[500px] rounded-lg object-cover" />
                 <h3 className="px-2 pt-2">
                   <Skeleton className="w-[128px] max-w-full" />
                 </h3>
@@ -76,7 +76,7 @@ const LoadingSkeleton = () => (
           <div className="aspect-square">
             <li className="col-span-full aspect-square mobileLandscape:col-span-6 tabletLandscape:col-span-4 desktop:col-span-2">
               <a>
-                <SVGSkeleton className="aspect-square rounded-lg object-cover w-[500px] h-[500px]" />
+                <SVGSkeleton className="aspect-square h-[500px] w-[500px] rounded-lg object-cover" />
                 <h3 className="px-2 pt-2">
                   <Skeleton className="w-[96px] max-w-full" />
                 </h3>
@@ -93,7 +93,7 @@ const LoadingSkeleton = () => (
 );
 
 const SandboxPreview = () => (
-  <div className="flex justify-center w-full h-full p-10">
+  <div className="flex h-full w-full justify-center p-10">
     <LoadingSkeleton />
   </div>
 );

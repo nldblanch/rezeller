@@ -3,8 +3,8 @@ import { Skeleton, SVGSkeleton } from "~/app/_components/skeleton";
 export default function Loading() {
   return (
     <>
-      <main className="tablet:mx-2 tablet:px-2 grid grid-cols-12">
-        <section className="max-tablet:hidden col-span-3 h-full pr-2">
+      <main className="grid grid-cols-12 tablet:mx-2 tablet:px-2">
+        <section className="col-span-3 h-full pr-2 max-tablet:hidden">
           <hgroup className="ml-auto max-w-96">
             <h2>
               <Skeleton className="w-[64px] max-w-full" />
@@ -79,7 +79,6 @@ export default function Loading() {
             <h2>
               <Skeleton className="w-[40px] max-w-full" />
             </h2>
-            
           </hgroup>
           <hgroup className="ml-auto max-w-96 pt-2">
             <h2>
@@ -93,7 +92,7 @@ export default function Loading() {
             </p>
           </hgroup>
         </section>
-        <ul className="tablet:col-span-6 tablet:col-start-4 col-span-full flex flex-col gap-4">
+        <ul className="col-span-full flex flex-col gap-4 tablet:col-span-6 tablet:col-start-4">
           <li className="max-h-40 w-full">
             <a className="flex h-full">
               <SVGSkeleton className="aspect-square h-[500px] max-h-40 w-[500px] max-w-40 object-cover" />

@@ -52,7 +52,7 @@ export const PriceInput = () => {
   return (
     <>
       <form
-        className="flex flex-col desktop:flex-row h-full w-full desktop:items-center gap-2 p-1"
+        className="flex h-full w-full flex-col gap-2 p-1 desktop:flex-row desktop:items-center"
         onSubmit={handleSubmit}
       >
         <fieldset className="box-border h-full w-full max-w-32">
@@ -60,7 +60,7 @@ export const PriceInput = () => {
             <p className="z-50 text-base text-black">£</p>
             <label
               htmlFor="min-price"
-              className={`z-50 absolute bg-white px-1 left-[8%] text-center text-base text-black ${
+              className={`absolute left-[8%] z-50 bg-white px-1 text-center text-base text-black ${
                 priceState.minFocused || priceState.minValue
                   ? "-translate-y-[100%] text-xxs"
                   : ""
@@ -89,7 +89,7 @@ export const PriceInput = () => {
             <p className="z-50 text-base text-black">£</p>
             <label
               htmlFor="max-price"
-              className={`z-50 absolute bg-white px-1 left-[8%] text-base text-black ${
+              className={`absolute left-[8%] z-50 bg-white px-1 text-base text-black ${
                 priceState.maxFocused || priceState.maxValue
                   ? "-translate-y-[100%] text-xxs"
                   : ""
@@ -102,7 +102,7 @@ export const PriceInput = () => {
               inputMode="numeric"
               id="max-price"
               name="max-price"
-              className="absolute h-4/5 w-full appearance-none px-3 text-base bg-white text-black"
+              className="absolute h-4/5 w-full appearance-none bg-white px-3 text-base text-black"
               onFocus={() => handleFocus("max")}
               onBlur={() => handleBlur("max")}
               value={priceState.maxValue}
@@ -113,7 +113,7 @@ export const PriceInput = () => {
 
         <button
           type="submit"
-          className="aspect-square rounded-full bg-blue-500 p-2 text-sm text-white font-bold max-h-8 max-w-8 flex justify-center items-center"
+          className="flex aspect-square max-h-8 max-w-8 items-center justify-center rounded-full bg-blue-500 p-2 text-sm font-bold text-white"
         >
           go
         </button>

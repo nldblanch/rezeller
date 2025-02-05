@@ -53,9 +53,9 @@ export const itemsRouter = createTRPCRouter({
       const where = {
         available_item: true,
         ...(category_id && { category_id }),
-        ...(category && { category: {category_name: category} }),
+        ...(category && { category: { category_name: category } }),
         ...(subcategory_id && { subcategory_id }),
-        ...(subcategory && { subcategory: {subcategory_name: subcategory} }),
+        ...(subcategory && { subcategory: { subcategory_name: subcategory } }),
         ...(tag && {
           name: { contains: tag, mode: Prisma.QueryMode.insensitive },
         }),
@@ -73,9 +73,9 @@ export const itemsRouter = createTRPCRouter({
         include: { category: true, subcategory: true },
       });
       if (!items.length) {
-        where.available_item = false
+        where.available_item = false;
         const relevantItem = await ctx.db.items.findFirst({
-          where: where
+          where: where,
         });
         const youMightLike = await ctx.db.items.findMany({
           where: {

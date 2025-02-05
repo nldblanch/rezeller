@@ -4,7 +4,7 @@ export default async function Loading() {
   return (
     <>
       <>
-        <ul className="tablet:col-span-6 tablet:col-start-4 col-span-full flex flex-col gap-4">
+        <ul className="col-span-full flex flex-col gap-4 tablet:col-span-6 tablet:col-start-4">
           <li className="max-h-40 w-full">
             <a className="flex h-full">
               <SVGSkeleton className="aspect-square h-[500px] max-h-40 w-[500px] max-w-40 object-cover" />
