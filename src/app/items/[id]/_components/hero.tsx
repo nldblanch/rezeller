@@ -5,8 +5,7 @@ import HeroUsername from "./hero-username";
 import type { Item, User } from "~/app/types/item";
 import { capitaliseFirstLetters, convertPennyToPounds } from "~/app/scripts";
 import Image from "next/image";
-import MobileImageBar from "./mobile-image-bar";
-import DesktopImageBar from "./desktop-image-bar";
+import ImageBar from "./image-bar";
 
 export default function Hero({ item, user }: { item: Item; user: User }) {
   const { name = "", photo_source = [], photo_description, price = 0 } = item;
@@ -21,9 +20,10 @@ export default function Hero({ item, user }: { item: Item; user: User }) {
         width={500}
       />
       {photo_source?.length > 1 && (
-        <MobileImageBar
+        <ImageBar
           photo_source={photo_source}
           setMainPhoto={setMainPhoto}
+          containerStyle="tabletLandscape:hidden"
         />
       )}
       <div className="col-span-12 p-4 tabletLandscape:col-span-6">
@@ -45,9 +45,10 @@ export default function Hero({ item, user }: { item: Item; user: User }) {
           </button>
         </div>
       </div>
-      <DesktopImageBar
+      <ImageBar
         photo_source={photo_source}
         setMainPhoto={setMainPhoto}
+        containerStyle="max-tabletLandscape:hidden"
       />
     </section>
   );

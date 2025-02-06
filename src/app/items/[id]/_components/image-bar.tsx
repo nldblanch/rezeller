@@ -4,12 +4,14 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { useCallback, useEffect, useRef, useState } from "react";
 
-export default function DesktopImageBar({
+export default function ImageBar({
   photo_source,
   setMainPhoto,
+  containerStyle,
 }: {
   photo_source: string[];
   setMainPhoto: React.Dispatch<React.SetStateAction<string | undefined>>;
+  containerStyle: string;
 }) {
   const carouselRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -26,8 +28,8 @@ export default function DesktopImageBar({
       const containerWidth = containerRef.current.offsetWidth;
       const needsScrolling = totalWidth > containerWidth;
       setCanScroll(needsScrolling);
-      setMaxScroll(needsScrolling ? -(totalWidth - containerWidth) : 0); // Prevent scrolling if not needed
-      if (!needsScrolling) setScrollX(0); // Reset position when scrolling is not needed
+      setMaxScroll(needsScrolling ? -(totalWidth - containerWidth) : 0);
+      if (!needsScrolling) setScrollX(0);
     }
   }, [totalWidth]);
 
@@ -57,7 +59,7 @@ export default function DesktopImageBar({
   return (
     <div
       ref={containerRef}
-      className="relative col-span-full mt-4 w-full overflow-hidden"
+      className={`relative col-span-full mt-4 w-full overflow-hidden ${containerStyle}`}
     >
       {canScroll && (
         <button
