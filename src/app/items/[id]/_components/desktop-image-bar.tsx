@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 export default function DesktopImageBar({
   photo_source,
@@ -21,21 +21,21 @@ export default function DesktopImageBar({
   const imageWidth = 208;
   const totalWidth = photo_source.length * imageWidth;
 
-  const updateScrollLimits = () => {
+  const updateScrollLimits = useCallback(() => {
     if (carouselRef.current && containerRef.current) {
       const containerWidth = containerRef.current.offsetWidth;
       const needsScrolling = totalWidth > containerWidth;
       setCanScroll(needsScrolling);
-      setMaxScroll(needsScrolling ? -(totalWidth - containerWidth) : 0);
-      if (!needsScrolling) setScrollX(0);
+      setMaxScroll(needsScrolling ? -(totalWidth - containerWidth) : 0); // Prevent scrolling if not needed
+      if (!needsScrolling) setScrollX(0); // Reset position when scrolling is not needed
     }
-  };
+  }, [totalWidth]);
 
   useEffect(() => {
     updateScrollLimits();
     window.addEventListener("resize", updateScrollLimits);
     return () => window.removeEventListener("resize", updateScrollLimits);
-  }, [photo_source.length]);
+  }, [updateScrollLimits]);
 
   useEffect(() => {
     const timeout = setTimeout(() => setIsScrolling(false), 300);

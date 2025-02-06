@@ -8,7 +8,7 @@ export default function MobileImageBar({
   setMainPhoto: React.Dispatch<React.SetStateAction<string | undefined>>;
 }) {
   return (
-    <ul className="tabletLandscape:hidden col-span-full mt-2 grid grid-cols-3 gap-2">
+    <ul className="col-span-full mt-2 grid grid-cols-3 gap-2 tabletLandscape:hidden">
       {photo_source.map((photo, index) => {
         return (
           <li key={index} className="aspect-square">
