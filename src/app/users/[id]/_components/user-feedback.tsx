@@ -41,7 +41,7 @@ export default function UserFeedback({
         })}
       </ul>
       <h3 className="col-start-1 mt-4 py-2 text-left text-2xl font-bold">
-        All Feedback <span className="font-medium text-zinc-400">(0)</span>
+        All Feedback <span className="font-medium text-zinc-400">({userFeedback.length})</span>
       </h3>
       <ul className="flex w-full flex-col gap-2">
         {userFeedback?.map((item) => {

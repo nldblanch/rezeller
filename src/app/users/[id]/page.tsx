@@ -16,7 +16,7 @@ export default async function User({
   const items = await api.items.fetchUserItems({ user_id });
   const feedback = await api.feedback.fetchUserFeedback({ user_id });
   return user ? (
-    <main className="mobileLandscape:mx-2 mobileLandscape:px-2">
+    <main className="mx-2 px-2">
       <Hero user={user} />
       {/* <Feedback user_id={user_id} /> */}
       <Body items={items} feedback={feedback} />
