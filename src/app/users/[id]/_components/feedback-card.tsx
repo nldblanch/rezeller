@@ -21,15 +21,21 @@ export default function FeedbackCard({
           width={50}
           className="h-full w-fit rounded-full"
         />
-        <p>
+        <p className="max-mobileLandscape:text-sm">
           {disguiseName(username)} ({feedbackCount})
         </p>
-        <p className="text-xl font-bold">•</p>
-        <p>{formatDistanceToNow(userFeedback.date_left)}</p>
+        <p className="text-xl font-bold max-mobileLandscape:text-lg">•</p>
+        <p className="max-mobileLandscape:text-sm">
+          {formatDistanceToNow(userFeedback.date_left)}
+        </p>
 
-        <p className="ml-auto">Verified purchase</p>
+        <p className="ml-auto max-mobileLandscape:text-sm">
+          Verified <span className="max-mobileLandscape:hidden">purchase</span>
+        </p>
       </div>
-      <p className="w-full text-base font-medium">{userFeedback.comment}</p>
+      <p className="w-full font-medium max-mobileLandscape:text-sm">
+        {userFeedback.comment}
+      </p>
     </div>
   );
 }

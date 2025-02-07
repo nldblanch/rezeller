@@ -27,7 +27,7 @@ export default function UserFeedback({
       <h4 className="pb-3 text-base font-medium text-zinc-400">
         Last 12 months
       </h4>
-      <ul className="flex gap-28">
+      <ul className="flex gap-28 max-mobileLandscape:gap-14">
         {["Positive", "Neutral", "Negative"].map((rank) => {
           const rankKey = rank.toLowerCase() as Rank;
           return (
