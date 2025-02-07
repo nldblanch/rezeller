@@ -18,7 +18,7 @@ export const Hero = ({ user: { username, avatar_url } }: PartialUser) => {
           width={500}
         />
       </div>
-      <h2 className="col-span-6 text-sm pl-4 mobileLandscape:text-xl">
+      <h2 className="col-span-6 pl-4 text-sm mobileLandscape:text-xl">
         {username}
       </h2>
       <Feedback user_id={1} />

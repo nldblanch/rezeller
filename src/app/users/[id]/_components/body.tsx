@@ -2,7 +2,6 @@
 
 import type { Feedback, Item } from "~/app/types/item";
 import Items from "./items";
-import SearchBar from "~/app/_components/search-bar";
 import { useState, useEffect } from "react";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import UserSearchBar from "./user-search-bar";
@@ -38,16 +37,16 @@ export default function Body({
   };
 
   return (
-    <section className="w-full h-full mt-4">
+    <section className="mt-4 h-full w-full">
       <nav className="flex h-12 w-full justify-between gap-6">
-        <div className="tablet:gap-8 flex h-full items-center gap-4">
-          <button className="max-tablet:hidden h-10 rounded-full border border-white px-12">
+        <div className="flex h-full items-center gap-4 tablet:gap-8">
+          <button className="h-10 rounded-full border border-white px-12 max-tablet:hidden">
             Options
           </button>
-          <button className="tablet:hidden flex aspect-square h-10 items-center justify-center rounded-full border border-white text-3xl">
+          <button className="flex aspect-square h-10 items-center justify-center rounded-full border border-white text-3xl tablet:hidden">
             ☰
           </button>
-          <ul className="tablet:gap-8 flex h-full w-full items-center justify-center gap-4">
+          <ul className="flex h-full w-full items-center justify-center gap-4 tablet:gap-8">
             {["Shop", "About", "Feedback"].map((tab) => {
               return (
                 <li

@@ -30,14 +30,14 @@ export default function SearchBar() {
             router.push("/items");
           }
         }}
-        className="col-span-full mx-auto flex w-full tablet:max-w-lg justify-center items-center rounded-full bg-white min-h-8"
+        className="col-span-full mx-auto flex min-h-8 w-full items-center justify-center rounded-full bg-white tablet:max-w-lg"
       >
         <Image
           src={`/search_icon.png`}
           alt="search icon"
           width="32"
           height="32"
-          className="aspect-square rounded-none h-6 w-6 ml-2"
+          className="ml-2 aspect-square h-6 w-6 rounded-none"
         />
         <input
           className="autofill-input w-full rounded-full bg-white px-2 text-base text-black focus:outline-none"
@@ -48,7 +48,7 @@ export default function SearchBar() {
           type="text"
         />
         <button
-          className="text-baSE rounded-full bg-blue-600 px-2 h-full"
+          className="text-baSE h-full rounded-full bg-blue-600 px-2"
           type="submit"
         >
           Search

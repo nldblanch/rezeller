@@ -11,7 +11,7 @@ export default async function Header({ searchbar }: { searchbar: boolean }) {
     <header className="mb-2">
       <nav className="grid grid-cols-12 gap-2 p-2">
         <div className="col-span-6 mobileLandscape:col-span-3">
-          <Link className="tabletLandscape:text-3xl text-2xl" href="/">
+          <Link className="text-2xl tabletLandscape:text-3xl" href="/">
             REZELLER
           </Link>
         </div>
