@@ -1,6 +1,6 @@
 import Image from "next/image";
 import type { User } from "~/app/types/item";
-import Feedback from "./feedback";
+import HeroFeedback from "./hero-feedback";
 
 interface PartialUser {
   user: Partial<User>;
@@ -21,7 +21,7 @@ export const Hero = ({ user: { username, avatar_url } }: PartialUser) => {
       <h2 className="col-span-6 pl-4 text-sm mobileLandscape:text-xl">
         {username}
       </h2>
-      <Feedback user_id={1} />
+      <HeroFeedback user_id={1} />
     </section>
   );
 };

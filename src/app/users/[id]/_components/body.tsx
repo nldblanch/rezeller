@@ -5,7 +5,7 @@ import Items from "./items";
 import { useState, useEffect } from "react";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import UserSearchBar from "./user-search-bar";
-
+import UserFeedback from "./user-feedback";
 export default function Body({
   items,
   feedback,
@@ -62,7 +62,8 @@ export default function Body({
         </div>
         <UserSearchBar />
       </nav>
-      <Items userItems={items} />
+      {activeTab === "Shop" && <Items userItems={items} />}
+      {activeTab === "Feedback" && <UserFeedback userFeedback={feedback} />}
     </section>
   );
 }

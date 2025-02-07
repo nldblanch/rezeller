@@ -1,5 +1,5 @@
 import { Hero } from "./_components/hero";
-import Feedback from "./_components/feedback";
+import Feedback from "./_components/hero-feedback";
 import Items from "./_components/items";
 import { api } from "~/trpc/server";
 import Body from "./_components/body";
