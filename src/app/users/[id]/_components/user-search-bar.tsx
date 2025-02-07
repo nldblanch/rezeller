@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-export default function SearchBar() {
+export default function UserSearchBar() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const initialSearchValue = searchParams.get("search") ?? "";
@@ -16,7 +16,7 @@ export default function SearchBar() {
   }, [initialSearchValue]);
 
   return (
-    <section className="col-span-full flex h-full w-full mobileLandscape:col-span-6 mobileLandscape:col-start-4">
+    <section className="flex h-full w-full max-w-96 grow">
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -30,29 +30,23 @@ export default function SearchBar() {
             router.push("/items");
           }
         }}
-        className="col-span-full mx-auto flex w-full tablet:max-w-lg justify-center items-center rounded-full bg-white min-h-8"
+        className="col-span-full mx-auto flex w-full max-w-lg items-center justify-center rounded-full bg-white"
       >
         <Image
           src={`/search_icon.png`}
           alt="search icon"
-          width="32"
-          height="32"
-          className="aspect-square rounded-none h-6 w-6 ml-2"
+          width="30"
+          height="30"
+          className="ml-2 aspect-square h-6 w-6 rounded-none"
         />
         <input
           className="autofill-input w-full rounded-full bg-white px-2 text-base text-black focus:outline-none"
-          placeholder="Search for anything"
+          placeholder="Search user items"
           value={searchValue}
           onChange={(e) => setSearchValue(e.target.value)}
           name="search"
           type="text"
         />
-        <button
-          className="text-baSE rounded-full bg-blue-600 px-2 h-full"
-          type="submit"
-        >
-          Search
-        </button>
       </form>
     </section>
   );
