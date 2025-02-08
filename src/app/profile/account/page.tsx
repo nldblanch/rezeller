@@ -1,5 +1,4 @@
 "use client";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 export default function Account() {
@@ -11,8 +10,8 @@ export default function Account() {
       <h1 className="bold col-span-full col-start-1 mt-2 py-4 text-left text-2xl">
         My profile
       </h1>
-      <nav className="col-span-full mb-2 flex justify-between">
-        <ul className="justify-left flex h-full w-full items-center gap-4 tablet:gap-8">
+      <nav className="col-span-full flex justify-between mb-2">
+        <ul className="tablet:gap-8 justify-left flex h-full w-full items-center gap-4">
           {["Activity", "Account"].map((tab) => {
             return (
               <li
@@ -31,7 +30,7 @@ export default function Account() {
         </ul>
       </nav>
       <section className="col-span-12 grid grid-cols-12 gap-6">
-        <hgroup className="col-span-4 max-tablet:col-span-12">
+        <hgroup className="max-tablet:col-span-12 col-span-4">
           <h2 className="py-2 text-lg font-bold">
             Personal information and privacy
           </h2>
@@ -45,14 +44,14 @@ export default function Account() {
           </ul>
         </hgroup>
 
-        <hgroup className="col-span-4 max-tablet:col-span-full">
+        <hgroup className="max-tablet:col-span-full col-span-4">
           <h2 className="py-2 text-lg font-bold">Payment information</h2>
           <ul className="flex flex-col gap-2">
             <li>Payments</li>
           </ul>
         </hgroup>
 
-        <hgroup className="col-span-4 max-tablet:col-span-full">
+        <hgroup className="max-tablet:col-span-full col-span-4">
           <h2 className="py-2 text-lg font-bold">Account preferences</h2>
           <ul className="flex flex-col gap-2">
             <li>Permissions</li>
@@ -62,7 +61,7 @@ export default function Account() {
           </ul>
         </hgroup>
 
-        <hgroup className="col-span-4 max-tablet:col-span-full">
+        <hgroup className="max-tablet:col-span-full col-span-4">
           <h2 className="py-2 text-lg font-bold">Selling</h2>
 
           <ul className="flex flex-col gap-2">
