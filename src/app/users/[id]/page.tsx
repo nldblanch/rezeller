@@ -1,6 +1,5 @@
 import { Hero } from "./_components/hero";
-import Feedback from "./_components/hero-feedback";
-import Items from "./_components/items";
+
 import { api } from "~/trpc/server";
 import Body from "./_components/body";
 
@@ -18,7 +17,6 @@ export default async function User({
   return user ? (
     <main className="mx-2 px-2">
       <Hero user={user} />
-      {/* <Feedback user_id={user_id} /> */}
       <Body items={items} feedback={feedback} />
     </main>
   ) : (
