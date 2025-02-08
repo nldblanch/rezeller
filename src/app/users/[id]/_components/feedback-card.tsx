@@ -8,8 +8,8 @@ export default function FeedbackCard({
   userFeedback: Feedback;
 }) {
   const [{ username = "", feedbackCount }] =
-    api.feedback.getBuyerDetails.useSuspenseQuery({
-      buyer_id: userFeedback.buyer_id,
+    api.feedback.getUserFeedbackCount.useSuspenseQuery({
+      user_id: userFeedback.buyer_id,
     });
   return (
     <div className="flex h-16 w-full flex-col justify-between">

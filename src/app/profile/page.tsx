@@ -1,9 +1,7 @@
-import { Feedback } from "./_components/feedback";
-import Hero from "./_components/hero";
-import Items from "./_components/items";
 import { api } from "~/trpc/server";
 import { cookies } from "next/headers";
 import { notFound } from "next/navigation";
+import Body from "./_components/body";
 
 export default async function Profile() {
   const user_id = (await cookies()).get("user_id")?.value ?? "";
@@ -14,14 +12,17 @@ export default async function Profile() {
   }
 
   const user = await api.user.getUserById({ id: user_id });
+  if (!user) {
+    console.error("❌ No user data found");
+    return notFound();
+  }
+  return (
+    <main className="mx-2 grid grid-cols-12 px-2">
+      <h1 className="bold col-span-full col-start-1 mt-2 py-4 text-left text-2xl">
+        My profile
+      </h1>
 
-  return user ? (
-    <main className="mobileLandscape:mx-2 mobileLandscape:px-2">
-      <Hero user={user} />
-      <Feedback user_id={user_id} />
-      <Items user_id={user_id} />
+      <Body user={user} />
     </main>
-  ) : (
-    <p>something went wrong</p>
   );
 }
